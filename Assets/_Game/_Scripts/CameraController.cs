@@ -3,57 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
-{
-    [SerializeField] 
-    private Camera mainCamera;
-    public float cameraRoatationSpeed = 90f;
+{   
+    [SerializeField] private Camera mainCamera;
+
+    AnimationHandlerPlayer animationHandlerPlayer;
+
+    private float rotationDuration = 1f;
+
     private bool isRotating = false;
+
+    private void Start() 
+    {
+        animationHandlerPlayer = FindObjectOfType<AnimationHandlerPlayer>();
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        CheckForRotationInput();
+    }
+
+    //TODO -> Input Manager
+    private void CheckForRotationInput()
+    {
+        //Rotate Left
+        if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
         {
-            DreheKamera(-90f);
+            RotateCamera(-90f);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        //Rotate Right
+        if (Input.GetKeyDown(KeyCode.E) && !isRotating)
         {
-            DreheKamera(90f);
+            RotateCamera(90f);
         }
+
     }
 
     // Funktion zum Drehen der Kamera
-    void DreheKamera(float winkel)
+    private void RotateCamera(float rotationAngle)
     {
         if (isRotating) { return; }
 
-        StartCoroutine(DreheKameraCoroutine(winkel));
+        StartCoroutine(RotateCameraCoroutine(rotationAngle, rotationDuration));
     }
 
-    IEnumerator DreheKameraCoroutine(float zielWinkel)
+    IEnumerator RotateCameraCoroutine(float rotationAngle, float rotationDuration)
     {
         isRotating = true;
 
-        // Aktuelle Rotation der Kamera holen
-        Quaternion aktuelleRotation = mainCamera.transform.rotation;
+        Quaternion currentRotation = mainCamera.transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(currentRotation.eulerAngles + new Vector3(0f, rotationAngle, 0f));
+        Vector3 eulerRotation = targetRotation.eulerAngles;
 
-        // Zielrotation berechnen
-        Quaternion zielRotation = Quaternion.Euler(aktuelleRotation.eulerAngles + new Vector3(0f, zielWinkel, 0f));
+        animationHandlerPlayer.PlayAnimationCameraRotation(eulerRotation, rotationDuration);
 
-        float elapsedTime = 0f;
-        float animationDuration = 1f; // 1 Sekunde
-
-        while (elapsedTime < animationDuration)
-        {
-            // Rotation mithilfe von RotateTowards animieren
-            mainCamera.transform.rotation = Quaternion.RotateTowards(aktuelleRotation, zielRotation, cameraRoatationSpeed * Time.deltaTime);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Stelle sicher, dass die Kamera genau auf dem Zielwinkel endet
-        mainCamera.transform.rotation = zielRotation;
-
+        yield return new WaitForSeconds(rotationDuration);
         isRotating = false;
     }
+
 }
