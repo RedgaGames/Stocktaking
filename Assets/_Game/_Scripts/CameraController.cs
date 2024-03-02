@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     AnimationHandlerPlayer animationHandlerPlayer;
+    ConverterHelper converterHelper;
 
     private float rotationDuration = 1f;
 
@@ -15,6 +16,7 @@ public class CameraController : MonoBehaviour
     private void Start() 
     {
         animationHandlerPlayer = FindObjectOfType<AnimationHandlerPlayer>();
+        converterHelper = FindObjectOfType<ConverterHelper>();
     }
 
     void Update()
@@ -36,6 +38,16 @@ public class CameraController : MonoBehaviour
             RotateCamera(90f);
         }
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            animationHandlerPlayer.PlayAnimationShowClipboard();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            animationHandlerPlayer.PlayAnimationHideClipboard();
+        }
+
+
     }
 
     // Funktion zum Drehen der Kamera
@@ -51,10 +63,9 @@ public class CameraController : MonoBehaviour
         isRotating = true;
 
         Quaternion currentRotation = mainCamera.transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(currentRotation.eulerAngles + new Vector3(0f, rotationAngle, 0f));
-        Vector3 eulerRotation = targetRotation.eulerAngles;
+        Vector3 targetRotation = converterHelper.AddAndConvertQuaternionToVector3(currentRotation, new Vector3(0f, rotationAngle, 0f));
 
-        animationHandlerPlayer.PlayAnimationCameraRotation(eulerRotation, rotationDuration);
+        animationHandlerPlayer.PlayAnimationCameraRotation(targetRotation, rotationDuration);
 
         yield return new WaitForSeconds(rotationDuration);
         isRotating = false;
