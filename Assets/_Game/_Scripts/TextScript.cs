@@ -10,4 +10,6 @@ public class TextScript : MonoBehaviour
         Debug.Log("Tomato Clicked");
     }
 
+
+
 }

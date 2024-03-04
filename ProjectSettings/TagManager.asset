@@ -8,10 +8,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interactables2D
   - Water
   - UI
-  - Interactables
+  - Interactables3D
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2635288567
+    locked: 0
+  - name: Items
+    uniqueID: 4201955569
     locked: 0
