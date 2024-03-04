@@ -28,25 +28,116 @@ public class CheckListHandler : MonoBehaviour
         itemSpriteRenderer4 = numberIcon4 != null ? numberIcon4.GetComponent<SpriteRenderer>() : null;
         itemSpriteRenderer5 = numberIcon5 != null ? numberIcon5.GetComponent<SpriteRenderer>() : null;
 
-        if (itemSpriteRenderer1 == null) { Debug.Log("Kein Sprite Renderer gefunden"); }
+        if (itemRed1 != null) { itemRed1.material = ChangeTransparency(itemQuantity1, itemRed1); }
+        if (itemRed2 != null) { itemRed2.material = ChangeTransparency(itemQuantity1, itemRed2); }
+        if (itemRed3 != null) { itemRed3.material = ChangeTransparency(itemQuantity1, itemRed3); }
+        if (itemRed4 != null) { itemRed4.material = ChangeTransparency(itemQuantity1, itemRed4); }
+        if (itemRed5 != null) { itemRed5.material = ChangeTransparency(itemQuantity1, itemRed5); }
     }
 
-    public void AddItemQuantity(String itemName)
+    public void ChangeQuantityOnScroll(int orderOnChecklist)
     {
-        ItemType itemType = GetEnum(itemName);
+        float scrollDirection = Input.GetAxis("Mouse ScrollWheel");
 
+        if (scrollDirection > 0) { AddItemQuantity(orderOnChecklist); }
+        else if (scrollDirection < 0) { ReduceItemQuantity(orderOnChecklist); }
+    }
 
-
-        if (itemType == ItemType.tomato)
+    public void AddItemQuantity(int orderOnChecklist)
+    {
+        switch (orderOnChecklist)
         {
-            if (itemQuantity1 == 9) { return; } //Sound
+            case 1:
+                if (itemQuantity1 == 9) { return; }
+                itemQuantity1++;
 
-            itemQuantity1++;
-            itemAdd1.material = ChangeTransparency(itemQuantity1, itemAdd1);
+                itemAdd1.material = ChangeTransparency(itemQuantity1, itemAdd1);
+                if (itemQuantity1 != 9) { itemRed1.material = ChangeTransparency(itemQuantity1, itemRed1); }
 
-            // item icon ändern
-            Sprite newQuantitySprite = numbers[itemQuantity1];
-            itemSpriteRenderer1.sprite = newQuantitySprite;
+                Sprite newQuantitySprite = numbers[itemQuantity1];
+                itemSpriteRenderer1.sprite = newQuantitySprite;
+                break;
+            case 2:
+                if (itemQuantity2 == 9) { return; }
+                itemQuantity2++;
+
+                itemAdd2.material = ChangeTransparency(itemQuantity2, itemAdd2);
+                if (itemQuantity2 != 9) { itemRed2.material = ChangeTransparency(itemQuantity2, itemRed2); }
+
+                Sprite newQuantitySprite2 = numbers[itemQuantity2];
+                itemSpriteRenderer2.sprite = newQuantitySprite2;
+                break;
+
+            case 3:
+                if (itemQuantity3 == 9) { return; }
+                itemQuantity3++;
+
+                itemAdd3.material = ChangeTransparency(itemQuantity3, itemAdd3);
+                if (itemQuantity3 != 9) { itemRed3.material = ChangeTransparency(itemQuantity3, itemRed3); }
+
+                Sprite newQuantitySprite3 = numbers[itemQuantity3];
+                itemSpriteRenderer3.sprite = newQuantitySprite3;
+                break;
+
+            case 4:
+                if (itemQuantity4 == 9) { return; }
+                itemQuantity4++;
+
+                itemAdd4.material = ChangeTransparency(itemQuantity4, itemAdd4);
+                if (itemQuantity4 != 9) { itemRed4.material = ChangeTransparency(itemQuantity4, itemRed4); }
+
+                Sprite newQuantitySprite4 = numbers[itemQuantity4];
+                itemSpriteRenderer4.sprite = newQuantitySprite4;
+                break;
+        }
+    }
+
+    public void ReduceItemQuantity(int orderOnChecklist)
+    {
+        switch (orderOnChecklist)
+        {
+            case 1:
+                if (itemQuantity1 == 0) { return; }
+                itemQuantity1--;
+
+                itemRed1.material = ChangeTransparency(itemQuantity1, itemRed1);
+                if (itemQuantity1 != 0) { itemAdd1.material = ChangeTransparency(itemQuantity1, itemAdd1); }
+
+                Sprite newQuantitySprite = numbers[itemQuantity1];
+                itemSpriteRenderer1.sprite = newQuantitySprite;
+                break;
+            case 2:
+                if (itemQuantity2 == 0) { return; }
+                itemQuantity2--;
+
+                itemRed2.material = ChangeTransparency(itemQuantity2, itemRed2);
+                if (itemQuantity2 != 0) { itemAdd2.material = ChangeTransparency(itemQuantity2, itemAdd2); }
+
+                Sprite newQuantitySprite2 = numbers[itemQuantity2];
+                itemSpriteRenderer2.sprite = newQuantitySprite2;
+                break;
+
+            case 3:
+                if (itemQuantity3 == 0) { return; }
+                itemQuantity3--;
+
+                itemRed3.material = ChangeTransparency(itemQuantity3, itemRed3);
+                if (itemQuantity3 != 0) { itemAdd3.material = ChangeTransparency(itemQuantity3, itemAdd3); }
+
+                Sprite newQuantitySprite3 = numbers[itemQuantity3];
+                itemSpriteRenderer3.sprite = newQuantitySprite3;
+                break;
+
+            case 4:
+                if (itemQuantity4 == 0) { return; }
+                itemQuantity4--;
+
+                itemRed4.material = ChangeTransparency(itemQuantity4, itemRed4);
+                if (itemQuantity4 != 0) { itemAdd4.material = ChangeTransparency(itemQuantity4, itemAdd4); }
+
+                Sprite newQuantitySprite4 = numbers[itemQuantity4];
+                itemSpriteRenderer4.sprite = newQuantitySprite4;
+                break;
         }
     }
 
@@ -63,27 +154,7 @@ public class CheckListHandler : MonoBehaviour
         return material;
     }
 
-    // Unity doenst support enums in the hierachy??!
-    private ItemType GetEnum(string itemName)
-    {
-        ItemType itemType;
-        if (itemName == "Tomato") { itemType = ItemType.tomato; }
-        else if (itemName == "Milk") { itemType = ItemType.tomato; }
-        else if (itemName == "Meat") { itemType = ItemType.tomato; }
-        else if (itemName == "Cheese") { itemType = ItemType.tomato; }
-        else { itemType = ItemType.empty; }
-
-        return itemType;
-    }
 }
 
-// Enum of all available Items in this game
 
-public enum ItemType
-{
-    tomato,
-    milk,
-    meat,
-    cheese,
-    empty
-}
+

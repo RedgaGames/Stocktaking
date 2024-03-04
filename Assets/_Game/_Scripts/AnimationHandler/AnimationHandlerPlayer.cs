@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// Handles all DOTWEEN Animations for Playerelements like camera and checklist
+/// </summary>
+
 public class AnimationHandlerPlayer : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
@@ -35,7 +39,7 @@ public class AnimationHandlerPlayer : MonoBehaviour
         Quaternion clipboardRotate = clipboardTransform.transform.rotation;
         Vector3 targetRotation = converterHelper.AddAndConvertQuaternionToVector3(clipboardRotate, new Vector3(-100f, 0f, 0f));
 
-        clipboardTransform.DORotate(targetRotation, 0.5f, RotateMode.FastBeyond360);
+        clipboardTransform.DOLocalRotate(targetRotation, 0.5f, RotateMode.FastBeyond360);
     }
 
     public void PlayAnimationHideClipboard()
@@ -43,7 +47,7 @@ public class AnimationHandlerPlayer : MonoBehaviour
         Quaternion clipboardRotate = clipboardTransform.transform.rotation;
         Vector3 targetRotation = converterHelper.AddAndConvertQuaternionToVector3(clipboardRotate, new Vector3(100f, 0f, 0f));
 
-        clipboardTransform.DORotate(targetRotation, 0.5f, RotateMode.FastBeyond360);
+        clipboardTransform.DOLocalRotate(targetRotation, 0.5f, RotateMode.FastBeyond360);
 
     }
 
