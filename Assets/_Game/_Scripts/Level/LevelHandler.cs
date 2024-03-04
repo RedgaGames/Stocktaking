@@ -11,14 +11,12 @@ public class LevelHandler : MonoBehaviour
 {
     [SerializeField] private string _itemOnChecklistSlot1, _itemOnChecklistSlot2, _itemOnChecklistSlot3, _itemOnChecklistSlot4, _itemOnChecklistSlot5;
 
-    private ItemType itemType1, itemType2, itemType3, itemType4, itemType5;
+    private ItemType itemType1, itemType2, itemType3, itemType4, itemType5; 
 
     public int ItemQuantityTomato { get; private set; }
     public int ItemQuantityMilk { get; private set; }
     public int ItemQuantityMeat { get; private set; }
     public int ItemQuantityCheese { get; private set; }
-
-
 
     private void Start()
     {
@@ -49,6 +47,16 @@ public class LevelHandler : MonoBehaviour
         }
 
     }
+
+    // Counts every Object in the scene which is relevant for the endscreen
+    public void CountAllItems()
+    {
+
+
+
+
+    }
+
 
 
 
