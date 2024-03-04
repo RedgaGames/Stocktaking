@@ -16,12 +16,16 @@ public class CheckListHandler : MonoBehaviour
     [SerializeField] SpriteRenderer itemAdd1, itemAdd2, itemAdd3, itemAdd4, itemAdd5;
     [SerializeField] SpriteRenderer itemRed1, itemRed2, itemRed3, itemRed4, itemRed5;
 
+    LevelHandler levelHandler;
+
     SpriteRenderer itemSpriteRenderer1, itemSpriteRenderer2, itemSpriteRenderer3, itemSpriteRenderer4, itemSpriteRenderer5;
 
     private int itemQuantity1, itemQuantity2, itemQuantity3, itemQuantity4, itemQuantity5;
 
     private void Start()
     {
+        levelHandler = FindObjectOfType<LevelHandler>();
+
         itemSpriteRenderer1 = numberIcon1 != null ? numberIcon1.GetComponent<SpriteRenderer>() : null;
         itemSpriteRenderer2 = numberIcon2 != null ? numberIcon2.GetComponent<SpriteRenderer>() : null;
         itemSpriteRenderer3 = numberIcon3 != null ? numberIcon3.GetComponent<SpriteRenderer>() : null;
@@ -56,6 +60,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite = numbers[itemQuantity1];
                 itemSpriteRenderer1.sprite = newQuantitySprite;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity1);
+
                 break;
             case 2:
                 if (itemQuantity2 == 9) { return; }
@@ -66,6 +73,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite2 = numbers[itemQuantity2];
                 itemSpriteRenderer2.sprite = newQuantitySprite2;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity2);
+
                 break;
 
             case 3:
@@ -77,6 +87,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite3 = numbers[itemQuantity3];
                 itemSpriteRenderer3.sprite = newQuantitySprite3;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity3);
+
                 break;
 
             case 4:
@@ -88,6 +101,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite4 = numbers[itemQuantity4];
                 itemSpriteRenderer4.sprite = newQuantitySprite4;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity4);
+
                 break;
         }
     }
@@ -105,6 +121,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite = numbers[itemQuantity1];
                 itemSpriteRenderer1.sprite = newQuantitySprite;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity1);
+
                 break;
             case 2:
                 if (itemQuantity2 == 0) { return; }
@@ -115,6 +134,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite2 = numbers[itemQuantity2];
                 itemSpriteRenderer2.sprite = newQuantitySprite2;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity2);
+
                 break;
 
             case 3:
@@ -126,6 +148,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite3 = numbers[itemQuantity3];
                 itemSpriteRenderer3.sprite = newQuantitySprite3;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity3);
+
                 break;
 
             case 4:
@@ -137,6 +162,9 @@ public class CheckListHandler : MonoBehaviour
 
                 Sprite newQuantitySprite4 = numbers[itemQuantity4];
                 itemSpriteRenderer4.sprite = newQuantitySprite4;
+
+                levelHandler.ChangeQuantityOfItemInSlot(orderOnChecklist, itemQuantity4);
+
                 break;
         }
     }
