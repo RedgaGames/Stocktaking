@@ -6,6 +6,8 @@ public class TomatoObject : MonoBehaviour
 {
     [SerializeField] private float _force;
 
+    private bool isFirstClick = true;
+
     private Rigidbody _rig;
 
     private void Start() {
@@ -23,6 +25,22 @@ public class TomatoObject : MonoBehaviour
 
         _rig.AddForce(finalForce.normalized * _force, ForceMode.Impulse);
 
+        if (isFirstClick)
+        {
+            isFirstClick = false;
+            AddOutline();
+        }
     }
+
+    private void AddOutline()
+    {
+        var outline = gameObject.AddComponent<Outline>();
+
+        outline.OutlineMode = Outline.Mode.OutlineAll;
+        outline.OutlineColor = Color.red;
+        outline.OutlineWidth = 7f;
+    }
+
+
 
 }
