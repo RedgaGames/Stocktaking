@@ -49,7 +49,7 @@ public class BaseObject : MonoBehaviour
         var outline = gameObject.AddComponent<Outline>();
 
         outline.OutlineMode = Outline.Mode.OutlineAll;
-        outline.OutlineColor = Color.red;
+        outline.OutlineColor = _OutlineColor;
         outline.OutlineWidth = 7f;
     }
 }
