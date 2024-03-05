@@ -17,6 +17,12 @@ public class LevelHandler : MonoBehaviour
     public int ItemQuantityMilk { get; private set; }
     public int ItemQuantityMeat { get; private set; }
     public int ItemQuantityCheese { get; private set; }
+    public int ItemCountOnSceneTomato { get; private set; }
+    public int ItemCountOnSceneMilk { get; private set; }
+    public int ItemCountOnSceneMeat { get; private set; }
+    public int ItemCountOnSceneCheese { get; private set; }
+
+    private bool isTomatoOnScene, isMilkOnScene, isCheeseOnScene, isMeatOnScene = false;
 
     private void Start()
     {
@@ -51,26 +57,36 @@ public class LevelHandler : MonoBehaviour
     // Counts every Object in the scene which is relevant for the endscreen
     public void CountAllItems()
     {
-
-
-
+        if (isTomatoOnScene)
+        {
+            GameObject[] tomatoes = GameObject.FindGameObjectsWithTag("Tomato");
+            ItemCountOnSceneTomato = tomatoes.Length;
+        }
+        if (isMilkOnScene)
+        {
+            GameObject[] milks = GameObject.FindGameObjectsWithTag("Milk");
+            ItemCountOnSceneMilk = milks.Length;
+        }
+        if (isCheeseOnScene)
+        {
+            GameObject[] cheeses = GameObject.FindGameObjectsWithTag("Cheese");
+            ItemCountOnSceneCheese = cheeses.Length;
+        }
+        if (isMeatOnScene)
+        {
+            GameObject[] meats = GameObject.FindGameObjectsWithTag("Meat");
+            ItemCountOnSceneMeat = meats.Length;
+        }
 
     }
-
-
-
-
-
-
-
 
     // Unity doenst support enums in the hierachy??!
     private ItemType GetEnum(string itemName)
     {
         ItemType itemType;
-        if (itemName == "Tomato") { itemType = ItemType.tomato; }
-        else if (itemName == "Milk") { itemType = ItemType.milk; }
-        else if (itemName == "Meat") { itemType = ItemType.meat; }
+        if (itemName == "Tomato") { itemType = ItemType.tomato; isTomatoOnScene = true; }
+        else if (itemName == "Milk") { itemType = ItemType.milk; isMilkOnScene = true; }
+        else if (itemName == "Meat") { itemType = ItemType.meat; isMeatOnScene = true; }
         else if (itemName == "Cheese") { itemType = ItemType.cheese; }
         else { itemType = ItemType.empty; }
 
