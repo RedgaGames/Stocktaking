@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {   
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject inspectCamera;
+    [SerializeField] private GameObject maskedGuyCamera;
 
     AnimationHandlerPlayer animationHandlerPlayer;
     ConverterHelper converterHelper;
@@ -23,6 +25,15 @@ public class CameraController : MonoBehaviour
     {
         CheckForRotationInput();
     }
+
+    public void ActivateMainCamera(){ inspectCamera.SetActive(false); maskedGuyCamera.SetActive(false); }
+    public void ActivateInspectCamera(){ inspectCamera.SetActive(true); maskedGuyCamera.SetActive(false); }
+    public void ActivateMaskedGuyCamera(){ inspectCamera.SetActive(false); maskedGuyCamera.SetActive(true); }
+
+
+
+
+
 
     //TODO -> Input Manager
     private void CheckForRotationInput()

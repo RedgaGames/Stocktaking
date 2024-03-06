@@ -1,6 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+//using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,10 +12,14 @@ using UnityEngine.UI;
 
 public class DialogHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject _dialogScreen;
+    ScreenHandler screenHandler;
+
+    [Header("Steuerelemente")]
     [SerializeField] private TextMeshProUGUI _dialogText;
-    [SerializeField] private Image _maskGuyImage;
+    [SerializeField] private float _textSpeed;
+
     [Header("Mask Guy Sprites")]
+    [SerializeField] private Image _maskGuyImage;
     [SerializeField] private Sprite _maskGuySpriteHappy;
     [SerializeField] private Sprite _maskGuySpriteSad;
     [SerializeField] private Sprite _maskGuySpriteEvil;
@@ -24,10 +29,84 @@ public class DialogHandler : MonoBehaviour
     [SerializeField] private Sprite _maskGuySpriteScared;
     [SerializeField] private Sprite _maskGuySpriteSurprised;
 
-    public void ShowDialog(string newDialogText, MaskGuyEmotion newMaskGuyEmotion)
-    {
-        _dialogText.SetText(newDialogText);
+    //public string[] dialogLines;
+    public List<(string text, MaskGuyEmotion emotion)> dialogLines;
+    private int _index;
+    private bool canBeSkipped;
 
+
+    private void Start()
+    {
+        screenHandler = FindObjectOfType<ScreenHandler>();
+
+        dialogLines = new List<(string, MaskGuyEmotion)>();
+    }
+
+    public void ContinuePressed()
+    {
+        if (_dialogText.text == dialogLines[_index].text)
+        {
+            ShowNextLine();
+        }
+        else
+        {
+            if (canBeSkipped)
+            {
+                StopAllCoroutines();    //Killt alle Coroutinen der aktuellen Klasse.
+                _dialogText.text = dialogLines[_index].text;
+            }
+        }
+    }
+
+    public void AddTextLineToDialog(string newTextLine, MaskGuyEmotion newMaskedGuyEmotion)
+    {
+        dialogLines.Add((newTextLine, newMaskedGuyEmotion));
+    }
+
+    public void ShowDialog(bool newCanBeSkipped)
+    {
+        if (dialogLines.Count == 0) { Debug.Log("Keine Dialoge zum zeigen"); }
+
+        canBeSkipped = newCanBeSkipped;
+
+        _index = 0;
+        _dialogText.text = string.Empty;
+
+        StartCoroutine(TypeDialogText());
+    }
+
+    private void ShowNextLine()
+    {
+        if (_index < dialogLines.Count - 1) //Length swapped with count
+        {
+            _index++;
+            _dialogText.text = string.Empty;
+            StartCoroutine(TypeDialogText());
+        }
+        else
+        {
+            screenHandler.HideDialogScreen();
+            // Schauen ob von hier oder durch dritte
+            //gameObject.SetActive(false);
+            Debug.Log("Dialog Ende");
+        }
+
+    }
+
+    private IEnumerator TypeDialogText()
+    {
+        ChangeEmotion();
+
+        foreach (char c in dialogLines[_index].text.ToCharArray())
+        {
+            _dialogText.text += c;
+            yield return new WaitForSeconds(_textSpeed);
+        }
+    }
+
+    private void ChangeEmotion()
+    {
+        MaskGuyEmotion newMaskGuyEmotion = dialogLines[_index].emotion;
         switch (newMaskGuyEmotion)
         {
             case MaskGuyEmotion.happy:
