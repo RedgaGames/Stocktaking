@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7770131425233208091
+--- !u!1 &721494016548941907
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,69 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7219129545930245149}
-  - component: {fileID: 7219129545930245143}
-  - component: {fileID: 7219129545930245142}
-  - component: {fileID: 7219129545930245145}
-  - component: {fileID: 7219129545930245144}
-  - component: {fileID: 7219129545930245147}
-  - component: {fileID: 7219129545930245146}
+  - component: {fileID: 8409748284937479016}
+  - component: {fileID: 6656956722554608162}
+  - component: {fileID: 7874536249387073206}
+  - component: {fileID: 6656956722554608161}
+  - component: {fileID: 6656956722554608160}
+  - component: {fileID: 6656956722554608163}
+  - component: {fileID: 6656956722554608158}
   m_Layer: 6
-  m_Name: Tomato
+  m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7219129545930245149
+--- !u!4 &8409748284937479016
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7770131425233208091}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.734, y: 2.1, z: 3.487}
-  m_LocalScale: {x: 0.23102, y: 0.23102, z: 0.23102}
+  m_GameObject: {fileID: 721494016548941907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.54038, y: 0.54038, z: 0.54038}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7219129545930245143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7770131425233208091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37ed235759bdd84daa498e1b3a510a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _force: 1.25
-  _applyForceRangeMinX: -0.5
-  _applyForceRangeMaxX: 1
-  _applyForceRangeMinY: -1
-  _applyForceRangeMaxY: 1
-  _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
-  canGetOutline: 1
---- !u!33 &7219129545930245142
+--- !u!33 &6656956722554608162
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7770131425233208091}
-  m_Mesh: {fileID: -2432090755550338912, guid: 4d06d268eebb7e342a8fb1d5e3f48e63, type: 3}
---- !u!23 &7219129545930245145
+  m_GameObject: {fileID: 721494016548941907}
+  m_Mesh: {fileID: -2432090755550338912, guid: dc38e6ff8c433744f8dbb6becf330663, type: 3}
+--- !u!23 &7874536249387073206
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7770131425233208091}
+  m_GameObject: {fileID: 721494016548941907}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8469494145858465668, guid: 4d06d268eebb7e342a8fb1d5e3f48e63, type: 3}
+  - {fileID: -8469494145858465668, guid: dc38e6ff8c433744f8dbb6becf330663, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,26 +87,61 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7219129545930245144
+--- !u!65 &6656956722554608161
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7770131425233208091}
+  m_GameObject: {fileID: 721494016548941907}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 1.6, z: 1.9000001}
-  m_Center: {x: -0.099999994, y: 0.8, z: 0.25000003}
---- !u!114 &7219129545930245147
+  m_Size: {x: 2.0000005, y: 1.1, z: 1.5000005}
+  m_Center: {x: -0.000000230968, y: 0.54999995, z: 0.2499991}
+--- !u!54 &6656956722554608160
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721494016548941907}
+  serializedVersion: 2
+  m_Mass: 2
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6656956722554608163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7770131425233208091}
+  m_GameObject: {fileID: 721494016548941907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d37e3013683444b27cb785a0a6414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _force: 2.5
+  _applyForceRangeMinX: -1
+  _applyForceRangeMaxX: 1
+  _applyForceRangeMinY: -1
+  _applyForceRangeMaxY: 1
+  _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
+  canGetOutline: 0
+--- !u!114 &6656956722554608158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721494016548941907}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
@@ -136,8 +152,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7219129545930245143}
-          m_TargetAssemblyTypeName: TomatoObject, Assembly-CSharp
+        - m_Target: {fileID: 6656956722554608163}
+          m_TargetAssemblyTypeName: BaseObject, Assembly-CSharp
           m_MethodName: ApplyForce
           m_Mode: 1
           m_Arguments:
@@ -148,19 +164,3 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!54 &7219129545930245146
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7770131425233208091}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
