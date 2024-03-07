@@ -14,13 +14,33 @@ public class BaseObject : MonoBehaviour
     [SerializeField] protected float _applyForceRangeMaxY = 1f;
     [SerializeField] protected Color _OutlineColor;
     [SerializeField] protected bool canGetOutline = false;
+    [SerializeField] protected bool canInspected = false;
     protected bool isFirstClick = true;
+
+    MouseClickDetector mouseClickDetector;
 
     protected Rigidbody _rig;
 
     protected virtual void Start()
     {
         _rig = GetComponent<Rigidbody>();
+
+        mouseClickDetector = FindObjectOfType<MouseClickDetector>();
+    }
+
+    public virtual void InteractWithItem()
+    {
+        if (mouseClickDetector.LastMouseButtonClicked == MouseButtonType.leftButton)
+        {
+            ApplyForce();
+        }
+        if (mouseClickDetector.LastMouseButtonClicked == MouseButtonType.rightButton)
+        {
+            if (canInspected)
+            {
+                Debug.Log("Right Click Check");
+            }
+        }
     }
 
     public virtual void ApplyForce()

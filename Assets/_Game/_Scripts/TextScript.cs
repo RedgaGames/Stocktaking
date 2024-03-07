@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TextScript : MonoBehaviour
 {
@@ -29,7 +30,17 @@ public class TextScript : MonoBehaviour
 
 
 
-
+    public void OnPointerClick()
+    {
+        if (Input.GetMouseButtonDown(0)) // Linksklick
+        {
+            Debug.Log("Linksklick erkannt");
+        }
+        else if (Input.GetMouseButtonDown(1)) // Rechtsklick
+        {
+            Debug.Log("Rechtsklick erkannt");
+        }
+    }
 
 
 
