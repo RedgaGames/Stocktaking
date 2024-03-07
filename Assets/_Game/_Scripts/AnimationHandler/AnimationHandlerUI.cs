@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class AnimationHandlerUI : MonoBehaviour
 {
-    [SerializeField] private float test1;
-    [SerializeField] private float test2;
-
     [Header("Screens")]
     [SerializeField] private GameObject _endLevelScreen;
     [SerializeField] private GameObject _dialogTextScreen;
