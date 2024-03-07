@@ -16,11 +16,14 @@ public class ScreenHandler : MonoBehaviour
         cameraController = FindObjectOfType<CameraController>();
     }
 
+    //IntroScreen
     public void ShowIntroScreen()
     {
         animationHandlerUI.PlayAnimation_IntroText();
     }
 
+
+    //EndLevelScreen
     public void ShowEndLevelScreen()
     {
         animationHandlerUI.PlayAnimation_DimedBackground_FadeIn();
@@ -33,6 +36,8 @@ public class ScreenHandler : MonoBehaviour
         animationHandlerUI.PlayAnimation_EndLevelScreen_FadeOut();
     }
     
+
+    //DialogScreen
     public void ShowDialogScreen()
     {
         animationHandlerUI.PlayAnimation_DialogScreen_FadeIn();
@@ -42,6 +47,9 @@ public class ScreenHandler : MonoBehaviour
     {
         animationHandlerUI.PlayAnimation_DialogScreen_FadeOut();
     }
+
+
+    //Outro
     public void ShowOutroScreen()
     {
         StartCoroutine(ShowOutroScreenRoutine());
@@ -54,8 +62,6 @@ public class ScreenHandler : MonoBehaviour
         cameraController.ActivateMaskedGuyCamera();
         animationHandlerUI.PlayAnimation_BlackBackground_FadeOut(0.5f);
     }
-
-
 
     public void ShowOutroScreenAsIntro()
     {   
@@ -75,6 +81,19 @@ public class ScreenHandler : MonoBehaviour
         cameraController.ActivateMainCamera();
         animationHandlerUI.PlayAnimation_BlackBackground_FadeOut(0.5f);
     }
+
+
+    //  InspectScreen
+    public void ShowInspectScreen()
+    {
+        cameraController.ActivateInspectCamera();
+    }
+
+    public void HideInspectScreen()
+    {
+        cameraController.ActivateMainCamera();
+    }
+
 
 
 

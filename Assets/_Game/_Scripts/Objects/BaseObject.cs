@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -15,9 +16,12 @@ public class BaseObject : MonoBehaviour
     [SerializeField] protected Color _OutlineColor;
     [SerializeField] protected bool canGetOutline = false;
     [SerializeField] protected bool canInspected = false;
+    [SerializeField] protected GameObject _inspectObject;
+
     protected bool isFirstClick = true;
 
     MouseClickDetector mouseClickDetector;
+    ScreenHandler screenHandler;
 
     protected Rigidbody _rig;
 
@@ -26,6 +30,7 @@ public class BaseObject : MonoBehaviour
         _rig = GetComponent<Rigidbody>();
 
         mouseClickDetector = FindObjectOfType<MouseClickDetector>();
+        screenHandler = FindObjectOfType<ScreenHandler>();
     }
 
     public virtual void InteractWithItem()
@@ -38,7 +43,7 @@ public class BaseObject : MonoBehaviour
         {
             if (canInspected)
             {
-                Debug.Log("Right Click Check");
+                InspectItem();
             }
         }
     }
@@ -72,4 +77,12 @@ public class BaseObject : MonoBehaviour
         outline.OutlineColor = _OutlineColor;
         outline.OutlineWidth = 7f;
     }
+
+    protected void InspectItem()
+    {
+        if (!_inspectObject){ Debug.Log("Kein Item zum Inspecten hinterlegt"); return; }
+        _inspectObject.SetActive(true);
+        screenHandler.ShowInspectScreen();
+    }
+
 }
