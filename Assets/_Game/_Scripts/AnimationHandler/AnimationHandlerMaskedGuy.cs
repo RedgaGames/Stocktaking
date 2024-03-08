@@ -6,18 +6,29 @@ using DG.Tweening;
 public class AnimationHandlerMaskedGuy : MonoBehaviour
 {
     [SerializeField] private GameObject _maskedGuyDialog;
-    [SerializeField] private GameObject _maskedGuyOutro;
+    [SerializeField] private GameObject _maskedGuyOutroHappy, _maskedGuyOutroScared, _maskedGuyOutroEvil;
     private RectTransform _maskedGuyDialogRectTransform;
-    private Transform _maskedGuyOutroTransform;
+    private Transform _maskedGuyOutroHappyTransform;
+    private Transform _maskedGuyOutroScaredTransform;
+    private Transform _maskedGuyOutroEvilTransform;
+    private Transform _maskedGuyOutroDefaultPosition;
+
 
     private bool _dialogIsPunching = false;
 
+    private void Awake() {
+        _maskedGuyDialogRectTransform = _maskedGuyDialog.GetComponent<RectTransform>();
+        _maskedGuyOutroHappyTransform = _maskedGuyOutroHappy.GetComponent<Transform>();
+        _maskedGuyOutroScaredTransform = _maskedGuyOutroScared.GetComponent<Transform>();
+        _maskedGuyOutroEvilTransform = _maskedGuyOutroEvil.GetComponent<Transform>();
+
+        //For reseting Maskposition during the game
+        _maskedGuyOutroDefaultPosition = _maskedGuyOutroEvil.transform;
+    }
+
     private void Start()
     {
-        _maskedGuyDialogRectTransform = _maskedGuyDialog.GetComponent<RectTransform>();
-        _maskedGuyOutroTransform = _maskedGuyOutro.GetComponent<Transform>();
-
-        PlayAnimation_MaskedGuyDialog_NewDialog();
+        //PlayAnimation_MaskedGuyDialog_NewDialog();
     }
 
     private void Update()
@@ -33,9 +44,6 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
         }
         
     }
-
-
-
 
     public void PlayAnimation_MaskedGuyDialog_NewDialog()
     {
@@ -57,16 +65,43 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
 
     public void PlayAnimation_MaskedGuyOutro_Happy()
     {
-        //Move
-        _maskedGuyOutroTransform.transform.DOMoveY(transform.position.y + 3f, 2f)
+        _maskedGuyOutroHappy.SetActive(true);
+        
+        _maskedGuyOutroHappyTransform.transform.DOMoveY(transform.position.y + 3f, 2f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutQuad);
 
-        // Verwende DOTween für die leichte Rotation auf der Y-Achse
-        _maskedGuyOutroTransform.transform.DORotate(new Vector3(20f, 0f, 0f), 5f)
-            .SetLoops(-1, LoopType.Yoyo) // Endlos wiederholen, um kontinuierliche Rotation zu erhalten
+        _maskedGuyOutroHappyTransform.transform.DORotate(new Vector3(20f, 0f, 0f), 5f)
+            .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutQuad);
     }
 
+    //TODO Change Animation
+    public void PlayAnimation_MaskedGuyOutro_Scared()
+    {
+        _maskedGuyOutroScared.SetActive(true);
+        
+        _maskedGuyOutroScaredTransform.transform.DOMoveY(transform.position.y + 3f, 2f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutQuad);
+
+        _maskedGuyOutroScaredTransform.transform.DORotate(new Vector3(20f, 0f, 0f), 5f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutQuad);
+    }    
+
+    //TODO Change Animation
+    public void PlayAnimation_MaskedGuyOutro_Evil()
+    {
+        _maskedGuyOutroEvil.SetActive(true);
+
+        _maskedGuyOutroEvilTransform.transform.DOMoveY(transform.position.y + 3f, 2f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutQuad);
+
+        _maskedGuyOutroEvilTransform.transform.DORotate(new Vector3(20f, 0f, 0f), 5f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutQuad);
+    }
 
 }

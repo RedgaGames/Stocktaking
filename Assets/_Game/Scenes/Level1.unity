@@ -878,6 +878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 249973325}
+  - component: {fileID: 249973326}
   m_Layer: 0
   m_Name: StateHandler
   m_TagString: Untagged
@@ -900,6 +901,19 @@ Transform:
   m_Father: {fileID: 119496201}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &249973326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249973324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb44bb340b721c4a96c8ef62238102f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
 --- !u!1 &270844606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5302,9 +5316,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1360861436}
+  - component: {fileID: 1360861438}
   - component: {fileID: 1360861437}
   m_Layer: 0
-  m_Name: _GameHandler
+  m_Name: _LevelDirector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5342,6 +5357,18 @@ MonoBehaviour:
   _itemOnChecklistSlot3: 
   _itemOnChecklistSlot4: 
   _itemOnChecklistSlot5: 
+--- !u!114 &1360861438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360861435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c82d984c8839542991dc2ab61a2b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1369567656
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,7 +5585,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maskedGuyDialog: {fileID: 1869520113}
-  _maskedGuyOutro: {fileID: 2766033778609674543}
+  _maskedGuyOutroHappy: {fileID: 2766033778609674543}
+  _maskedGuyOutroScared: {fileID: 6589293691038827815}
+  _maskedGuyOutroEvil: {fileID: 8263574622365844925}
 --- !u!1 &1374231063
 GameObject:
   m_ObjectHideFlags: 0

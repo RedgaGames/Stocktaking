@@ -17,7 +17,6 @@ public class CheckListHandler : MonoBehaviour
     [SerializeField] SpriteRenderer itemRed1, itemRed2, itemRed3, itemRed4, itemRed5;
 
     LevelHandler levelHandler;
-    MouseClickDetector mouseClickDetector;
 
     SpriteRenderer itemSpriteRenderer1, itemSpriteRenderer2, itemSpriteRenderer3, itemSpriteRenderer4, itemSpriteRenderer5;
 
@@ -26,7 +25,6 @@ public class CheckListHandler : MonoBehaviour
     private void Start()
     {
         levelHandler = FindObjectOfType<LevelHandler>();
-        mouseClickDetector = FindObjectOfType<MouseClickDetector>();
 
         itemSpriteRenderer1 = numberIcon1 != null ? numberIcon1.GetComponent<SpriteRenderer>() : null;
         itemSpriteRenderer2 = numberIcon2 != null ? numberIcon2.GetComponent<SpriteRenderer>() : null;

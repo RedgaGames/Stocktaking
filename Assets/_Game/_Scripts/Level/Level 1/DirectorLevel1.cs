@@ -3,23 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Director für das erste Level.
+/// Director for Level 1.
 /// </summary>
 
 public class DirectorLevel1 : MonoBehaviour
-{
-    ScreenHandler screenHandler;
+{   
+    OutroTextHandler outroTextHandler;
+    DialogHandler dialogHandler;
 
-// Masken Intro (Nur bei Tag 1)
-// Day 1 Screen
-// Intro Text
-// Gameplay
-//  - Bewege dich nach Links oder Rechts
-//  - Clipboard bei 
-//  - Zähle alle Items in diesem Raum
-//  - Rechts Klick zum inspizieren
-//  - Interaktion Schran
-// Ende
+
+    private void Awake() {
+        outroTextHandler = FindObjectOfType<OutroTextHandler>();
+        dialogHandler = FindObjectOfType<DialogHandler>();
+    }
+
+
+    private void Start() {
+        SetTextForIntroScene();
+    }
+
+
+    private void SetTextForIntroScene()
+    {   
+        outroTextHandler.AddTextLineToDialog("Test \n TestTestTest");
+        outroTextHandler.AddTextLineToDialog("Zweiter Text");
+        outroTextHandler.AddTextLineToDialog("Und Go!");
+
+        outroTextHandler.SetMaskEmotionForOutro(OutroTextHandler.MaskGuyEmotionOutro.happy);
+    }
 
 
 }

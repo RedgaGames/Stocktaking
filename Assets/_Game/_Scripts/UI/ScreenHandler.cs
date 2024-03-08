@@ -8,12 +8,13 @@ using UnityEngine;
 public class ScreenHandler : MonoBehaviour
 {
     private AnimationHandlerUI animationHandlerUI;
+    private AnimationHandlerMaskedGuy animationHandlerMaskedGuy;
     private CameraController cameraController;
 
-    private void Start() 
-    {
+    private void Awake() {
         animationHandlerUI = FindObjectOfType<AnimationHandlerUI>();
-        cameraController = FindObjectOfType<CameraController>();
+        animationHandlerMaskedGuy = FindObjectOfType<AnimationHandlerMaskedGuy>();
+        cameraController = FindObjectOfType<CameraController>();        
     }
 
     //IntroScreen
@@ -67,6 +68,7 @@ public class ScreenHandler : MonoBehaviour
     {   
         cameraController.ActivateMaskedGuyCamera();
         animationHandlerUI.PlayAnimation_OutroText_FadeIn_AsIntro();
+
     } 
 
     public void HideOutroScreenAsIntro()
@@ -81,6 +83,12 @@ public class ScreenHandler : MonoBehaviour
         cameraController.ActivateMainCamera();
         animationHandlerUI.PlayAnimation_BlackBackground_FadeOut(0.5f);
     }
+
+    //Masked Guy Emotions
+    public void ShowMaskedGuyHappyInOutro(){animationHandlerMaskedGuy.PlayAnimation_MaskedGuyOutro_Happy();}
+    public void ShowMaskedGuyEvilInOutro(){animationHandlerMaskedGuy.PlayAnimation_MaskedGuyOutro_Evil();}
+    public void ShowMaskedGuyScaredInOutro(){animationHandlerMaskedGuy.PlayAnimation_MaskedGuyOutro_Scared();}
+
 
 
     //  InspectScreen

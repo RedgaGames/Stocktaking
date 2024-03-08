@@ -25,16 +25,14 @@ public class AnimationHandlerUI : MonoBehaviour
     private Image _dimedBackgroundImage;
     private Image _blackBackgroundImage;
 
-    private void Start()
-    {
+    private void Awake() {
         _dimedBackgroundImage = _dimedBackground.GetComponent<Image>();
         _blackBackgroundImage = _blackBackground.GetComponent<Image>();
 
         _endLevelScreenRectTransform = _endLevelScreen.GetComponent<RectTransform>();
         _dialogTextScreenRectTransform = _dialogTextScreen.GetComponent<RectTransform>();
-        _inspectScreenRectTransform = _inspectScreen.GetComponent<RectTransform>();
+        _inspectScreenRectTransform = _inspectScreen.GetComponent<RectTransform>();        
     }
-
 
     //EndScreen
     public void PlayAnimation_EndLevelScreen_FadeIn(){
@@ -67,6 +65,9 @@ public class AnimationHandlerUI : MonoBehaviour
         PlayAnimation_BlackBackground_FadeIn(1.5f);
         yield return new  WaitForSeconds(1.5f);
         _introTextScreen.SetActive(false);
+
+        StateHandler.Instance.UpdateGameState(StateHandler.GameState.IntroMaskedGuy);
+    
     }
 
     //OUTRO TEXT

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class OutroTextHandler : MonoBehaviour
 {
@@ -11,21 +12,18 @@ public class OutroTextHandler : MonoBehaviour
     [Header("Steuerelemente")]
     [SerializeField] private TextMeshProUGUI _dialogText;
     [SerializeField] private GameObject _clickToContinueText;
-
     [SerializeField] private float _textSpeed;
-
-
 
     public List<string> dialogLines;
     private int _index;
-    private bool isIntro;
-    private bool canBeSkipped;
+    private bool _isIntro = true;
 
+    private void Awake() {
+        screenHandler = FindObjectOfType<ScreenHandler>();        
+    }
 
     private void Start()
     {
-        screenHandler = FindObjectOfType<ScreenHandler>();
-
         dialogLines = new List<string>();
     }
 
@@ -39,7 +37,7 @@ public class OutroTextHandler : MonoBehaviour
 
     public void AddTextLineToDialog(string newTextLine)
     {
-        dialogLines.Add((newTextLine));
+        dialogLines.Add(newTextLine);
     }
 
     public void StartOutroText()
@@ -73,9 +71,10 @@ public class OutroTextHandler : MonoBehaviour
         }
         else
         {
-            if (isIntro)
+            if (_isIntro)
             {
-                screenHandler.HideOutroScreenAsIntro();         
+                StateHandler.Instance.UpdateGameState(StateHandler.GameState.MainGame);
+                _isIntro = false;
             }
             else
             {
@@ -84,4 +83,30 @@ public class OutroTextHandler : MonoBehaviour
         }
 
     }
+
+    public void SetMaskEmotionForOutro(MaskGuyEmotionOutro maskGuyEmotion)
+    {
+        switch (maskGuyEmotion)
+        {
+            case MaskGuyEmotionOutro.happy:
+                screenHandler.ShowMaskedGuyHappyInOutro();
+                break;
+            case MaskGuyEmotionOutro.scared:
+                screenHandler.ShowMaskedGuyScaredInOutro();
+                break;
+            case MaskGuyEmotionOutro.evil:
+                screenHandler.ShowMaskedGuyEvilInOutro();
+                break;
+        }
+
+    }
+
+    public enum MaskGuyEmotionOutro
+    {
+        happy,
+        scared,
+        evil,
+    }
+
+
 }

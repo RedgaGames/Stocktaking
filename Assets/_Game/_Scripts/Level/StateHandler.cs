@@ -6,13 +6,21 @@ using UnityEngine;
 public class StateHandler : MonoBehaviour
 {
     public static StateHandler Instance;
-    ScreenHandler screenHandler;
-
     public GameState State;
+    private ScreenHandler screenHandler;
+    private OutroTextHandler outroTextHandler;
 
     public static event Action<GameState> OnGameStateChanged;
 
-    private void Start() {
+    private void Awake()
+    {
+        Instance = this;
+
+        screenHandler = FindObjectOfType<ScreenHandler>();
+        outroTextHandler = FindObjectOfType<OutroTextHandler>();
+    }
+    private void Start()
+    {
         UpdateGameState(GameState.Intro);
     }
 
@@ -23,8 +31,12 @@ public class StateHandler : MonoBehaviour
         switch (newState)
         {
             case GameState.Intro:
+                ShowIntro();
+                Debug.Log("GameState Intro");
                 break;
             case GameState.IntroMaskedGuy:
+                ShowMaskedGuyIntro();
+                Debug.Log("GameState IntroMaskedGuy");
                 break;
             case GameState.MainGame:
                 break;
@@ -42,6 +54,18 @@ public class StateHandler : MonoBehaviour
         //Checks if anyone is subscribed to this event
         OnGameStateChanged?.Invoke(newState);
     }
+
+    private void ShowIntro()
+    {
+        screenHandler.ShowIntroScreen();
+    }
+
+    private void ShowMaskedGuyIntro()
+    {
+        screenHandler.ShowOutroScreenAsIntro();
+        outroTextHandler.StartOutroText();
+    }
+
 
 
 
