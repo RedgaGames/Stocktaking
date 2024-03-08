@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Director für das erste Level.
+/// </summary>
+
 public class DirectorLevel1 : MonoBehaviour
 {
+    ScreenHandler screenHandler;
 
 // Masken Intro (Nur bei Tag 1)
 // Day 1 Screen

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class AnimationHandlerUI : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AnimationHandlerUI : MonoBehaviour
     [SerializeField] private GameObject _dialogTextScreen;
     [SerializeField] private GameObject _outroTextScreen;
     [SerializeField] private GameObject _introTextScreen;
+    [SerializeField] private GameObject _inspectScreen;
 
     [Header("Backgrounds")]
     [SerializeField] private GameObject _dimedBackground;
@@ -18,6 +20,7 @@ public class AnimationHandlerUI : MonoBehaviour
 
     private RectTransform _endLevelScreenRectTransform;
     private RectTransform _dialogTextScreenRectTransform;
+    private RectTransform _inspectScreenRectTransform;
 
     private Image _dimedBackgroundImage;
     private Image _blackBackgroundImage;
@@ -29,6 +32,7 @@ public class AnimationHandlerUI : MonoBehaviour
 
         _endLevelScreenRectTransform = _endLevelScreen.GetComponent<RectTransform>();
         _dialogTextScreenRectTransform = _dialogTextScreen.GetComponent<RectTransform>();
+        _inspectScreenRectTransform = _inspectScreen.GetComponent<RectTransform>();
     }
 
 
@@ -96,6 +100,19 @@ public class AnimationHandlerUI : MonoBehaviour
         PlayAnimation_BlackBackground_FadeIn(1f);
         _outroTextScreen.SetActive(false);
     }
+
+    //INSPECT SCREEN
+    //TODO Add Animation later
+    public void PlayAnimation_InspectScreen_FadeIn()
+    {
+        _inspectScreen.SetActive(true);
+    }
+
+    public void PlayAnimation_InspectScreen_FadeOut()
+    {
+        _inspectScreen.SetActive(false);
+    }
+
 
     //DIMED SCREEN
     public void PlayAnimation_DimedBackground_FadeIn()

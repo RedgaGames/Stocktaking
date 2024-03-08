@@ -41,7 +41,7 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
     {
         Vector3 targetPosition = _maskedGuyDialogRectTransform.position + new Vector3(0, 50f, 0);
 
-        _maskedGuyDialogRectTransform.DOMove(targetPosition, 2f)
+        _maskedGuyDialogRectTransform.DOLocalMove(targetPosition, 2f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutQuad);
     }

@@ -87,11 +87,13 @@ public class ScreenHandler : MonoBehaviour
     public void ShowInspectScreen()
     {
         cameraController.ActivateInspectCamera();
+        animationHandlerUI.PlayAnimation_InspectScreen_FadeIn();
     }
 
     public void HideInspectScreen()
     {
         cameraController.ActivateMainCamera();
+        animationHandlerUI.PlayAnimation_InspectScreen_FadeOut();
     }
 
 

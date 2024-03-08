@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class InteractObject : MonoBehaviour
 {
     [SerializeField] bool _canRotate = false;
     [SerializeField] float _rotationSpeed = 5f;
+    [SerializeField] string _itemName;
+
+    [SerializeField] TextMeshProUGUI _itemNameText;
 
     ScreenHandler screenHandler;
     private float _mouseWheelInput;
@@ -14,6 +18,10 @@ public class InteractObject : MonoBehaviour
     private void Start()
     {
         screenHandler = FindObjectOfType<ScreenHandler>();
+    }
+
+    private void OnEnable() {
+        _itemNameText.text = _itemName;
     }
 
     private void Update()
