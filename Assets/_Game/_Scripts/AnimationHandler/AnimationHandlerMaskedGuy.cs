@@ -8,6 +8,7 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
     [SerializeField] private GameObject _maskedGuyDialog;
     [SerializeField] private GameObject _maskedGuyOutroHappy, _maskedGuyOutroScared, _maskedGuyOutroEvil;
     private RectTransform _maskedGuyDialogRectTransform;
+    private RectTransform _maskedGuyDialogDefaultRectTransform;
     private Transform _maskedGuyOutroHappyTransform;
     private Transform _maskedGuyOutroScaredTransform;
     private Transform _maskedGuyOutroEvilTransform;
@@ -24,11 +25,7 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
 
         //For reseting Maskposition during the game
         _maskedGuyOutroDefaultPosition = _maskedGuyOutroEvil.transform;
-    }
-
-    private void Start()
-    {
-        //PlayAnimation_MaskedGuyDialog_NewDialog();
+        _maskedGuyDialogDefaultRectTransform = (RectTransform)_maskedGuyDialog.transform;
     }
 
     private void Update()

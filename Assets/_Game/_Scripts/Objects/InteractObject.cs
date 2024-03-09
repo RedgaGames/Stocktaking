@@ -62,7 +62,8 @@ public class InteractObject : MonoBehaviour
 
     private void EndInspection()
     {
-        screenHandler.HideInspectScreen();
         gameObject.SetActive(false);
+
+        StateHandler.Instance.UpdateGameState(StateHandler.GameState.MainGame);
     }
 }

@@ -9,6 +9,7 @@ public class StateHandler : MonoBehaviour
     public GameState State;
     private ScreenHandler screenHandler;
     private OutroTextHandler outroTextHandler;
+    private DialogHandler dialogHandler;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -18,10 +19,11 @@ public class StateHandler : MonoBehaviour
 
         screenHandler = FindObjectOfType<ScreenHandler>();
         outroTextHandler = FindObjectOfType<OutroTextHandler>();
+        dialogHandler = FindObjectOfType<DialogHandler>();
     }
     private void Start()
     {
-        UpdateGameState(GameState.Intro);
+        UpdateGameState(GameState.MainGame);
     }
 
     public void UpdateGameState(GameState newState)
@@ -38,9 +40,14 @@ public class StateHandler : MonoBehaviour
                 ShowMaskedGuyIntro();
                 Debug.Log("GameState IntroMaskedGuy");
                 break;
+            case GameState.Tutorial:
+                ShowTutorial();
+                break;                
             case GameState.MainGame:
+                ShowMainGame();
                 break;
             case GameState.Inspect:
+                ShowInspectMode();
                 break;
             case GameState.EndGame:
                 break;
@@ -66,6 +73,23 @@ public class StateHandler : MonoBehaviour
         outroTextHandler.StartOutroText();
     }
 
+    private void ShowTutorial()
+    {
+        screenHandler.HideOutroScreenAsIntro();
+        //screenHandler.ShowDialogScreen();
+        dialogHandler.ShowDialog(false);
+    }
+
+    private void ShowInspectMode()
+    {
+        screenHandler.ShowInspectScreen();
+    }
+
+    private void ShowMainGame()
+    {
+        screenHandler.HideInspectScreen();
+    }
+
 
 
 
@@ -75,6 +99,7 @@ public class StateHandler : MonoBehaviour
     {
         Intro,
         IntroMaskedGuy,
+        Tutorial,
         MainGame,
         Inspect,
         EndGame,

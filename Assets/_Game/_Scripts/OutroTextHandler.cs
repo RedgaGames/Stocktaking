@@ -16,15 +16,12 @@ public class OutroTextHandler : MonoBehaviour
 
     public List<string> dialogLines;
     private int _index;
+    
     private bool _isIntro = true;
 
     private void Awake() {
-        screenHandler = FindObjectOfType<ScreenHandler>();        
-    }
-
-    private void Start()
-    {
-        dialogLines = new List<string>();
+        screenHandler = FindObjectOfType<ScreenHandler>();    
+        dialogLines = new List<string>();    
     }
 
     public void ContinuePressed()
@@ -38,6 +35,7 @@ public class OutroTextHandler : MonoBehaviour
     public void AddTextLineToDialog(string newTextLine)
     {
         dialogLines.Add(newTextLine);
+        Debug.Log("Text Added: " + newTextLine);
     }
 
     public void StartOutroText()
@@ -73,8 +71,9 @@ public class OutroTextHandler : MonoBehaviour
         {
             if (_isIntro)
             {
-                StateHandler.Instance.UpdateGameState(StateHandler.GameState.MainGame);
+                StateHandler.Instance.UpdateGameState(StateHandler.GameState.Tutorial);
                 _isIntro = false;
+
             }
             else
             {

@@ -82,7 +82,8 @@ public class BaseObject : MonoBehaviour
     {
         if (!_inspectObject){ Debug.Log("Kein Item zum Inspecten hinterlegt"); return; }
         _inspectObject.SetActive(true);
-        screenHandler.ShowInspectScreen();
+
+        StateHandler.Instance.UpdateGameState(StateHandler.GameState.Inspect);
     }
 
 }

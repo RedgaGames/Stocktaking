@@ -16,6 +16,7 @@ public class DialogHandler : MonoBehaviour
 
     [Header("Steuerelemente")]
     [SerializeField] private TextMeshProUGUI _dialogText;
+    [SerializeField] private GameObject _clickToContinue;
     [SerializeField] private float _textSpeed;
 
     [Header("Mask Guy Sprites")]
@@ -29,18 +30,16 @@ public class DialogHandler : MonoBehaviour
     [SerializeField] private Sprite _maskGuySpriteScared;
     [SerializeField] private Sprite _maskGuySpriteSurprised;
 
-    //public string[] dialogLines;
     public List<(string text, MaskGuyEmotion emotion)> dialogLines;
     private int _index;
     private bool canBeSkipped;
+    private bool _isCurrentlyOpen = false;
 
-
-    private void Start()
-    {
+    private void Awake() {
         screenHandler = FindObjectOfType<ScreenHandler>();
-
-        dialogLines = new List<(string, MaskGuyEmotion)>();
+        dialogLines = new List<(string, MaskGuyEmotion)>();       
     }
+
 
     public void ContinuePressed()
     {
@@ -66,6 +65,9 @@ public class DialogHandler : MonoBehaviour
     public void ShowDialog(bool newCanBeSkipped)
     {
         if (dialogLines.Count == 0) { Debug.Log("Keine Dialoge zum zeigen"); }
+        if (_isCurrentlyOpen){return;}
+
+        screenHandler.ShowDialogScreen();
 
         canBeSkipped = newCanBeSkipped;
 
@@ -85,23 +87,32 @@ public class DialogHandler : MonoBehaviour
         }
         else
         {
-            screenHandler.HideDialogScreen();
-            // Schauen ob von hier oder durch dritte
-            //gameObject.SetActive(false);
-            Debug.Log("Dialog Ende");
+            ClearAndHideDialogScreen();
         }
 
     }
 
+    public void ClearAndHideDialogScreen()
+    {
+            dialogLines.Clear();
+            screenHandler.HideDialogScreen();
+            _isCurrentlyOpen = false;
+    }
+
     private IEnumerator TypeDialogText()
     {
+        _isCurrentlyOpen = true;
+
         ChangeEmotion();
+        _clickToContinue.SetActive(false);
 
         foreach (char c in dialogLines[_index].text.ToCharArray())
         {
             _dialogText.text += c;
             yield return new WaitForSeconds(_textSpeed);
         }
+
+        _clickToContinue.SetActive(true);
     }
 
     private void ChangeEmotion()
