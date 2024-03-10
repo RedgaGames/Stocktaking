@@ -36,8 +36,8 @@ public class DirectorLevel1 : MonoBehaviour
                     _firstTimeInspect = false;
 
                     dialogHandler.AddTextLineToDialog("Well done.", DialogHandler.MaskGuyEmotion.happy);
-                    dialogHandler.AddTextLineToDialog("You can rotate objects in inspectmode by using your mousewheel.", DialogHandler.MaskGuyEmotion.happy);
-                    dialogHandler.AddTextLineToDialog("Leave the inspectmode by pressing right click again.", DialogHandler.MaskGuyEmotion.happy);
+                    dialogHandler.AddTextLineToDialog("You can rotate objects in inspectmode \nby using your mousewheel.", DialogHandler.MaskGuyEmotion.happy);
+                    dialogHandler.AddTextLineToDialog("Leave the inspectmode by pressing \nright click again.", DialogHandler.MaskGuyEmotion.happy);
                     dialogHandler.ShowDialog(true);
                 }
                 break;
@@ -81,7 +81,7 @@ public class DirectorLevel1 : MonoBehaviour
     private void SetTextForFirstDialog()
     {
         dialogHandler.AddTextLineToDialog("Welcome to our storage room.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.AddTextLineToDialog("You can interact with objects in the room by clicking the left mouse button.", DialogHandler.MaskGuyEmotion.happy);
+        dialogHandler.AddTextLineToDialog("You can interact with objects in the room \nby clicking the left mouse button.", DialogHandler.MaskGuyEmotion.happy);
         dialogHandler.AddTextLineToDialog("Inspect objects by clicking the right mouse button.\nGive it a try.", DialogHandler.MaskGuyEmotion.happy);
     }
 

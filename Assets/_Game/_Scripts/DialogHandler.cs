@@ -12,6 +12,7 @@ using UnityEngine.UI;
 public class DialogHandler : MonoBehaviour
 {
     ScreenHandler screenHandler;
+    AnimationHandlerMaskedGuy animationHandlerMaskedGuy;
 
     [Header("Steuerelemente")]
     [SerializeField] private TextMeshProUGUI _dialogText;
@@ -36,9 +37,13 @@ public class DialogHandler : MonoBehaviour
 
     private void Awake() {
         screenHandler = FindObjectOfType<ScreenHandler>();
+        animationHandlerMaskedGuy = FindObjectOfType<AnimationHandlerMaskedGuy>();
         dialogLines = new List<(string, MaskGuyEmotion)>();       
     }
 
+    private void Start() {
+        animationHandlerMaskedGuy.PlayAnimation_MaskedGuyDialog_NewDialog();
+    }
 
     public void ContinuePressed()
     {
@@ -79,6 +84,7 @@ public class DialogHandler : MonoBehaviour
 
     private void ShowNextLine()
     {
+
         if (_index < dialogLines.Count - 1) //Length swapped with count
         {
             _index++;
@@ -105,6 +111,8 @@ public class DialogHandler : MonoBehaviour
 
         ChangeEmotion();
         _clickToContinue.SetActive(false);
+
+        animationHandlerMaskedGuy.PlayAnimation_MaskedGuyDialog_NewLine();
 
         foreach (char c in dialogLines[_index].text.ToCharArray())
         {

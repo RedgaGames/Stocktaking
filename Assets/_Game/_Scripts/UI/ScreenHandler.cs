@@ -104,14 +104,19 @@ public class ScreenHandler : MonoBehaviour
         animationHandlerUI.PlayAnimation_InspectScreen_FadeOut();
     }
 
-    //  BlackScreen
-    public void ShowEndLevel()
+    //  Finish Level
+    public void FinishLevelTransitionGood()
     {
         animationHandlerUI.PlayAnimation_BlackBackground_FadeIn(2f);
         
     }
 
-
+    public void FinishLevelTransitionBad()
+    {
+        animationHandlerMaskedGuy.PlayAnimation_MaskedGuyFlyTowardsPlayer();
+        animationHandlerUI.PlayAnimation_BlackBackground_FadeIn(2f);
+        
+    }
 
 
 }

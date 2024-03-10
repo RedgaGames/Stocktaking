@@ -85,17 +85,15 @@ public class OutroTextHandler : MonoBehaviour
                 if (IsLevelPassed)
                 {
                     Debug.Log("Level passed");
-                    screenHandler.ShowEndLevel();
+                    screenHandler.FinishLevelTransitionGood();
                 }
                 else
                 {
                     Debug.Log("Level failed");
-                    screenHandler.ShowEndLevel();
+                    screenHandler.FinishLevelTransitionBad();
                 }
             }
         }
-
-
     }
 
     public void SetMaskEmotionForOutro(MaskGuyEmotionOutro maskGuyEmotion)

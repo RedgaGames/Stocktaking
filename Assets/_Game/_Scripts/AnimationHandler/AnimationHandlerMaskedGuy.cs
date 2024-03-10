@@ -28,11 +28,6 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
         _maskedGuyDialogDefaultRectTransform = (RectTransform)_maskedGuyDialog.transform;
     }
 
-    private void Start()
-    {
-        PlayAnimation_MaskedGuyOutro_Evil();
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && !_dialogIsPunching)
@@ -49,9 +44,7 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
 
     public void PlayAnimation_MaskedGuyDialog_NewDialog()
     {
-        Vector3 targetPosition = _maskedGuyDialogRectTransform.position + new Vector3(0, 50f, 0);
-
-        _maskedGuyDialogRectTransform.DOLocalMove(targetPosition, 2f)
+        _maskedGuyDialogRectTransform.DOLocalMoveY(22, 6f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutQuad);
     }
@@ -105,7 +98,7 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
 
     public void PlayAnimation_MaskedGuyFlyTowardsPlayer()
     {
-        _maskedGuyOutroEvilTransform.DOLocalMoveZ(-5.5f, 3);
+        _maskedGuyOutroEvilTransform.DOLocalMoveZ(-5.5f, 2.5f);
     }
 
     public void HideAllMaskedGuyOnOutro()
