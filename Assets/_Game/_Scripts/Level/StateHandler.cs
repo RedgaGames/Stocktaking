@@ -25,7 +25,7 @@ public class StateHandler : MonoBehaviour
     }
     private void Start()
     {
-        UpdateGameState(GameState.MainGame);
+        UpdateGameState(GameState.Intro);
     }
 
     public void UpdateGameState(GameState newState)
@@ -36,11 +36,9 @@ public class StateHandler : MonoBehaviour
         {
             case GameState.Intro:
                 ShowIntro();
-                Debug.Log("GameState Intro");
                 break;
             case GameState.IntroMaskedGuy:
                 ShowMaskedGuyIntro();
-                Debug.Log("GameState IntroMaskedGuy");
                 break;
             case GameState.Tutorial:
                 ShowTutorial();
@@ -52,8 +50,10 @@ public class StateHandler : MonoBehaviour
                 ShowInspectMode();
                 break;
             case GameState.EndGame:
+                ShowEndGame();
                 break;
             case GameState.Outro:
+                ShowOutro();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -78,9 +78,14 @@ public class StateHandler : MonoBehaviour
 
     private void ShowTutorial()
     {
+        StartCoroutine(ShowTutroialRoutine());
+    }
+
+    private IEnumerator ShowTutroialRoutine()
+    {
         screenHandler.HideOutroScreenAsIntro();
-        //screenHandler.ShowDialogScreen();
-        dialogHandler.ShowDialog(false);
+        yield return new WaitForSeconds(1.5f);
+        dialogHandler.ShowDialog(true);
     }
 
     private void ShowInspectMode()
@@ -95,10 +100,23 @@ public class StateHandler : MonoBehaviour
         inputHandler.IsMainControllsActivated = true;
     }
 
+    private void ShowEndGame()
+    {
+        inputHandler.IsMainControllsActivated = false;
+    }
 
+    private void ShowOutro()
+    {
+        StartCoroutine(ShowOutroRoutine());
+    }
 
-
-
+    private IEnumerator ShowOutroRoutine()
+    {
+        inputHandler.IsMainControllsActivated = false;
+        screenHandler.ShowOutroScreen();
+        yield return new WaitForSeconds(1f);
+        outroTextHandler.StartOutroText();
+    }    
 
     public enum GameState
     {

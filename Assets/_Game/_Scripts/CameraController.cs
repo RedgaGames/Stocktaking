@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {   
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject inspectCamera;
     [SerializeField] private GameObject maskedGuyCamera;
 
@@ -21,9 +21,9 @@ public class CameraController : MonoBehaviour
         converterHelper = FindObjectOfType<ConverterHelper>();
     }
 
-    public void ActivateMainCamera(){ inspectCamera.SetActive(false); maskedGuyCamera.SetActive(false); }
-    public void ActivateInspectCamera(){ inspectCamera.SetActive(true); maskedGuyCamera.SetActive(false); }
-    public void ActivateMaskedGuyCamera(){ inspectCamera.SetActive(false); maskedGuyCamera.SetActive(true); }
+    public void ActivateMainCamera(){ mainCamera.SetActive(true); inspectCamera.SetActive(false); maskedGuyCamera.SetActive(false); }
+    public void ActivateInspectCamera(){ mainCamera.SetActive(false); inspectCamera.SetActive(true); maskedGuyCamera.SetActive(false); }
+    public void ActivateMaskedGuyCamera(){ mainCamera.SetActive(false); inspectCamera.SetActive(false); maskedGuyCamera.SetActive(true); }
 
     // Funktion zum Drehen der Kamera
     public void RotateCamera(float rotationAngle)

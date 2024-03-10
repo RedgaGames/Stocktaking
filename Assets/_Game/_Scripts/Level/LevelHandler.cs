@@ -17,20 +17,24 @@ public class LevelHandler : MonoBehaviour
     public int ItemQuantityMilk { get; private set; }
     public int ItemQuantityMeat { get; private set; }
     public int ItemQuantityCheese { get; private set; }
+
     public int ItemCountOnSceneTomato { get; private set; }
     public int ItemCountOnSceneMilk { get; private set; }
     public int ItemCountOnSceneMeat { get; private set; }
     public int ItemCountOnSceneCheese { get; private set; }
+
+    public int ResultAllItemsCountOnScene { get; private set; }
+    public int ResultAllItemsCountOnChecklist { get; private set; }
 
     private bool isTomatoOnScene, isMilkOnScene, isCheeseOnScene, isMeatOnScene = false;
 
     private void Start()
     {
         if (_itemOnChecklistSlot1 != null) { itemType1 = GetEnum(_itemOnChecklistSlot1); }
-        if (_itemOnChecklistSlot2 != null) { itemType2 = GetEnum(_itemOnChecklistSlot1); }
-        if (_itemOnChecklistSlot3 != null) { itemType3 = GetEnum(_itemOnChecklistSlot1); }
-        if (_itemOnChecklistSlot4 != null) { itemType4 = GetEnum(_itemOnChecklistSlot1); }
-        if (_itemOnChecklistSlot5 != null) { itemType5 = GetEnum(_itemOnChecklistSlot1); }
+        if (_itemOnChecklistSlot2 != null) { itemType2 = GetEnum(_itemOnChecklistSlot2); }
+        if (_itemOnChecklistSlot3 != null) { itemType3 = GetEnum(_itemOnChecklistSlot3); }
+        if (_itemOnChecklistSlot4 != null) { itemType4 = GetEnum(_itemOnChecklistSlot4); }
+        if (_itemOnChecklistSlot5 != null) { itemType5 = GetEnum(_itemOnChecklistSlot5); }
     }
 
     public void ChangeQuantityOfItemInSlot(int orderOnChecklist, int newValue)
@@ -48,10 +52,11 @@ public class LevelHandler : MonoBehaviour
         {
             case ItemType.tomato:
                 ItemQuantityTomato = newValue;
-                Debug.Log("ItemQuantityTomato = " + ItemQuantityTomato);
+                break;
+            case ItemType.milk:
+                ItemQuantityMilk = newValue;
                 break;
         }
-
     }
 
     // Counts every Object in the scene which is relevant for the endscreen
@@ -78,7 +83,33 @@ public class LevelHandler : MonoBehaviour
             ItemCountOnSceneMeat = meats.Length;
         }
 
+        CountAllItemsOnScene();
+        CountAllItemsOnChecklist();
+    }   
+
+    private void CountAllItemsOnScene()
+    {
+        ResultAllItemsCountOnScene =
+            ItemCountOnSceneTomato +
+            ItemCountOnSceneMilk +
+            ItemCountOnSceneMeat +
+            ItemCountOnSceneCheese;
+        
+        Debug.Log("Tomatos on Scene: " + ItemCountOnSceneTomato);
+        Debug.Log("Milk on Scene: " + ItemCountOnSceneMilk);
     }
+
+    private void CountAllItemsOnChecklist()
+    {
+        ResultAllItemsCountOnChecklist =
+            ItemQuantityTomato +
+            ItemQuantityMilk +
+            ItemQuantityMeat +
+            ItemQuantityCheese;
+    }
+
+
+
 
     // Unity doenst support enums in the hierachy??!
     private ItemType GetEnum(string itemName)
@@ -102,5 +133,4 @@ public class LevelHandler : MonoBehaviour
         cheese,
         empty
     }
-
 }

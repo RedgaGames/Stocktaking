@@ -16,12 +16,15 @@ public class OutroTextHandler : MonoBehaviour
 
     public List<string> dialogLines;
     private int _index;
-    
     private bool _isIntro = true;
 
-    private void Awake() {
-        screenHandler = FindObjectOfType<ScreenHandler>();    
-        dialogLines = new List<string>();    
+    public bool IsLevelPassed { get; set; }
+
+
+    private void Awake()
+    {
+        screenHandler = FindObjectOfType<ScreenHandler>();
+        dialogLines = new List<string>();
     }
 
     public void ContinuePressed()
@@ -40,7 +43,7 @@ public class OutroTextHandler : MonoBehaviour
 
     public void StartOutroText()
     {
-        if (dialogLines.Count == 0) { Debug.Log("Keine Dialoge zum zeigen"); }
+        if (dialogLines.Count == 0) { Debug.Log("Keine Dialoge zum zeigen"); return;}
 
         _index = 0;
         _dialogText.text = string.Empty;
@@ -74,12 +77,24 @@ public class OutroTextHandler : MonoBehaviour
                 StateHandler.Instance.UpdateGameState(StateHandler.GameState.Tutorial);
                 _isIntro = false;
 
+                dialogLines.Clear();
+                _dialogText.text = string.Empty;
             }
             else
             {
-                //SceneWechsel
+                if (IsLevelPassed)
+                {
+                    Debug.Log("Level passed");
+                    screenHandler.ShowEndLevel();
+                }
+                else
+                {
+                    Debug.Log("Level failed");
+                    screenHandler.ShowEndLevel();
+                }
             }
         }
+
 
     }
 

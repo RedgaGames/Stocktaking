@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,6 +52,7 @@ public class DialogHandler : MonoBehaviour
             {
                 StopAllCoroutines();    //Killt alle Coroutinen der aktuellen Klasse.
                 _dialogText.text = dialogLines[_index].text;
+                _clickToContinue.SetActive(true);
             }
         }
     }

@@ -28,6 +28,11 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
         _maskedGuyDialogDefaultRectTransform = (RectTransform)_maskedGuyDialog.transform;
     }
 
+    private void Start()
+    {
+        PlayAnimation_MaskedGuyOutro_Evil();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && !_dialogIsPunching)
@@ -37,7 +42,7 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            PlayAnimation_MaskedGuyOutro_Happy();
+            PlayAnimation_MaskedGuyFlyTowardsPlayer();
         }
         
     }
@@ -73,7 +78,6 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
             .SetEase(Ease.InOutQuad);
     }
 
-    //TODO Change Animation
     public void PlayAnimation_MaskedGuyOutro_Scared()
     {
         _maskedGuyOutroScared.SetActive(true);
@@ -87,18 +91,28 @@ public class AnimationHandlerMaskedGuy : MonoBehaviour
             .SetEase(Ease.InOutQuad);
     }    
 
-    //TODO Change Animation
     public void PlayAnimation_MaskedGuyOutro_Evil()
     {
         _maskedGuyOutroEvil.SetActive(true);
 
-        _maskedGuyOutroEvilTransform.transform.DOMoveY(transform.position.y + 3f, 2f)
-            .SetLoops(-1, LoopType.Yoyo)
-            .SetEase(Ease.InOutQuad);
+        _maskedGuyOutroEvilTransform.DOShakePosition(10f, 0.3f, 2, 90f, false, true, ShakeRandomnessMode.Harmonic)
+        .SetLoops(-1, LoopType.Yoyo);
 
         _maskedGuyOutroEvilTransform.transform.DORotate(new Vector3(20f, 0f, 0f), 5f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutQuad);
+    }
+
+    public void PlayAnimation_MaskedGuyFlyTowardsPlayer()
+    {
+        _maskedGuyOutroEvilTransform.DOLocalMoveZ(-5.5f, 3);
+    }
+
+    public void HideAllMaskedGuyOnOutro()
+    {
+        _maskedGuyOutroHappy.SetActive(false);
+        _maskedGuyOutroEvil.SetActive(false);
+        _maskedGuyOutroScared.SetActive(false);
     }
 
 }

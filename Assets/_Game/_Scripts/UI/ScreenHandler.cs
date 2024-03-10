@@ -58,6 +58,7 @@ public class ScreenHandler : MonoBehaviour
 
     private IEnumerator ShowOutroScreenRoutine()
     {
+        HideEndLevelScreen();
         animationHandlerUI.PlayAnimation_OutroText_FadeIn();
         yield return new WaitForSeconds(1f);
         cameraController.ActivateMaskedGuyCamera();
@@ -82,14 +83,13 @@ public class ScreenHandler : MonoBehaviour
         yield return new WaitForSeconds(1f);
         cameraController.ActivateMainCamera();
         animationHandlerUI.PlayAnimation_BlackBackground_FadeOut(0.5f);
+        animationHandlerMaskedGuy.HideAllMaskedGuyOnOutro();
     }
 
     //Masked Guy Emotions
     public void ShowMaskedGuyHappyInOutro(){animationHandlerMaskedGuy.PlayAnimation_MaskedGuyOutro_Happy();}
     public void ShowMaskedGuyEvilInOutro(){animationHandlerMaskedGuy.PlayAnimation_MaskedGuyOutro_Evil();}
     public void ShowMaskedGuyScaredInOutro(){animationHandlerMaskedGuy.PlayAnimation_MaskedGuyOutro_Scared();}
-
-
 
     //  InspectScreen
     public void ShowInspectScreen()
@@ -102,6 +102,13 @@ public class ScreenHandler : MonoBehaviour
     {
         cameraController.ActivateMainCamera();
         animationHandlerUI.PlayAnimation_InspectScreen_FadeOut();
+    }
+
+    //  BlackScreen
+    public void ShowEndLevel()
+    {
+        animationHandlerUI.PlayAnimation_BlackBackground_FadeIn(2f);
+        
     }
 
 
