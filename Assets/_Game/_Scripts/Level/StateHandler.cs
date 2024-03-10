@@ -10,6 +10,7 @@ public class StateHandler : MonoBehaviour
     private ScreenHandler screenHandler;
     private OutroTextHandler outroTextHandler;
     private DialogHandler dialogHandler;
+    private InputHandler inputHandler;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -20,6 +21,7 @@ public class StateHandler : MonoBehaviour
         screenHandler = FindObjectOfType<ScreenHandler>();
         outroTextHandler = FindObjectOfType<OutroTextHandler>();
         dialogHandler = FindObjectOfType<DialogHandler>();
+        inputHandler = FindObjectOfType<InputHandler>();
     }
     private void Start()
     {
@@ -65,6 +67,7 @@ public class StateHandler : MonoBehaviour
     private void ShowIntro()
     {
         screenHandler.ShowIntroScreen();
+        inputHandler.IsMainControllsActivated = false;
     }
 
     private void ShowMaskedGuyIntro()
@@ -83,11 +86,13 @@ public class StateHandler : MonoBehaviour
     private void ShowInspectMode()
     {
         screenHandler.ShowInspectScreen();
+        inputHandler.IsMainControllsActivated = false;
     }
 
     private void ShowMainGame()
     {
         screenHandler.HideInspectScreen();
+        inputHandler.IsMainControllsActivated = true;
     }
 
 

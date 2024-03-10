@@ -21,48 +21,12 @@ public class CameraController : MonoBehaviour
         converterHelper = FindObjectOfType<ConverterHelper>();
     }
 
-    void Update()
-    {
-        CheckForRotationInput();
-    }
-
     public void ActivateMainCamera(){ inspectCamera.SetActive(false); maskedGuyCamera.SetActive(false); }
     public void ActivateInspectCamera(){ inspectCamera.SetActive(true); maskedGuyCamera.SetActive(false); }
     public void ActivateMaskedGuyCamera(){ inspectCamera.SetActive(false); maskedGuyCamera.SetActive(true); }
 
-
-
-
-
-
-    //TODO -> Input Manager
-    private void CheckForRotationInput()
-    {
-        //Rotate Left
-        if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
-        {
-            RotateCamera(-90f);
-        }
-        //Rotate Right
-        if (Input.GetKeyDown(KeyCode.E) && !isRotating)
-        {
-            RotateCamera(90f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            animationHandlerPlayer.PlayAnimationShowClipboard();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            animationHandlerPlayer.PlayAnimationHideClipboard();
-        }
-
-
-    }
-
     // Funktion zum Drehen der Kamera
-    private void RotateCamera(float rotationAngle)
+    public void RotateCamera(float rotationAngle)
     {
         if (isRotating) { return; }
 

@@ -36,20 +36,11 @@ public class AnimationHandlerPlayer : MonoBehaviour
     // TODO: Noone likes magic numbers. But here there are - Enjoy!
     public void PlayAnimationShowClipboard()
     {  
-        Quaternion clipboardRotate = clipboardTransform.transform.rotation;
-        Vector3 targetRotation = converterHelper.AddAndConvertQuaternionToVector3(clipboardRotate, new Vector3(-100f, 0f, 0f));
-
-        clipboardTransform.DOLocalRotate(targetRotation, 0.5f, RotateMode.FastBeyond360);
+        clipboardTransform.DOLocalMoveY(-1.3f, 0.8f);
     }
 
     public void PlayAnimationHideClipboard()
     {
-        Quaternion clipboardRotate = clipboardTransform.transform.rotation;
-        Vector3 targetRotation = converterHelper.AddAndConvertQuaternionToVector3(clipboardRotate, new Vector3(100f, 0f, 0f));
-
-        clipboardTransform.DOLocalRotate(targetRotation, 0.5f, RotateMode.FastBeyond360);
-
+        clipboardTransform.DOLocalMoveY(-3.3f, 0.8f);
     }
-
-
 }
