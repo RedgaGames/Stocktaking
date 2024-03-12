@@ -14,6 +14,7 @@ public class BaseObject : MonoBehaviour
     [SerializeField] protected float _applyForceRangeMinY = -1f;
     [SerializeField] protected float _applyForceRangeMaxY = 1f;
     [SerializeField] protected Color _OutlineColor;
+    [SerializeField] protected bool canGetPushed = false;
     [SerializeField] protected bool canGetOutline = false;
     [SerializeField] protected bool canInspected = false;
     [SerializeField] protected GameObject _inspectObject;
@@ -37,7 +38,10 @@ public class BaseObject : MonoBehaviour
     {
         if (mouseClickDetector.LastMouseButtonClicked == MouseButtonType.leftButton)
         {
-            ApplyForce();
+            if (canGetPushed)
+            {
+                ApplyForce();
+            }
         }
         if (mouseClickDetector.LastMouseButtonClicked == MouseButtonType.rightButton)
         {

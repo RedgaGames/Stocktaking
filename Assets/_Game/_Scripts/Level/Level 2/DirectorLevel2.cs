@@ -1,25 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-/// <summary>
-/// Director for Level 1.
-/// Director Classes are getting messy.
-/// </summary>
-
-public class DirectorLevel1 : MonoBehaviour
+public class DirectorLevel2 : MonoBehaviour
 {
     OutroTextHandler outroTextHandler;
     DialogHandler dialogHandler;
     OutroHandler outroHandler;
-
-    private bool _firstTimeInspect = true;
-    private bool _firstTimeMainGame = true;
-    private bool _firstTimeClipboardOpend = true;
-    private bool _firstTimeClipboardClosed = true;
-    private bool _firstTimeRotated = true;
 
     private StateHandler.GameState _currentGameState;
 
@@ -33,11 +20,6 @@ public class DirectorLevel1 : MonoBehaviour
         StateHandler.OnGameStateChanged += StateHandlerChanged;
     }
 
-    void Update()
-    {
-        CheckForInputs();
-    }
-
     private void StateHandlerChanged(StateHandler.GameState currentState)
     {
         _currentGameState = currentState;
@@ -45,22 +27,18 @@ public class DirectorLevel1 : MonoBehaviour
         switch (currentState)
         {
             case StateHandler.GameState.Inspect:
-                if (_firstTimeInspect)
-                {
-                    _firstTimeInspect = false;
+
+    
 
                     dialogHandler.AddTextLineToDialog("Well done.", DialogHandler.MaskGuyEmotion.happy);
                     dialogHandler.AddTextLineToDialog("You can rotate objects in inspectmode \nby using your mousewheel.", DialogHandler.MaskGuyEmotion.happy);
                     dialogHandler.AddTextLineToDialog("Leave the inspectmode by pressing \nright click again.", DialogHandler.MaskGuyEmotion.happy);
                     dialogHandler.ShowDialog(true);
-                }
+                
                 break;
 
             case StateHandler.GameState.MainGame:
-                if (_firstTimeMainGame)
-                {
-                    _firstTimeMainGame = false;
-
+  
                     dialogHandler.AddTextLineToDialog("Good.", DialogHandler.MaskGuyEmotion.happy);
                     dialogHandler.AddTextLineToDialog("Now let's move on to the \ninventory.", DialogHandler.MaskGuyEmotion.happy);
                     dialogHandler.AddTextLineToDialog("Press W to bring out your \nclipboard.", DialogHandler.MaskGuyEmotion.happy);
@@ -68,7 +46,7 @@ public class DirectorLevel1 : MonoBehaviour
 
 
                     dialogHandler.ShowDialog(true);
-                }
+                
                 break;
 
             case StateHandler.GameState.Outro:
@@ -86,8 +64,8 @@ public class DirectorLevel1 : MonoBehaviour
 
     private void SetTextForIntroScene()
     {
-        outroTextHandler.AddTextLineToDialog("Hello fresh meat.");
-        outroTextHandler.AddTextLineToDialog("Welcome to the M.I.M. Cooperation.");
+        outroTextHandler.AddTextLineToDialog("Welcome back fresh meat.");
+        outroTextHandler.AddTextLineToDialog("You did well yesterday.");
         outroTextHandler.AddTextLineToDialog("Your job is to do our inventory.");
         outroTextHandler.AddTextLineToDialog("Make notes of our current stock \nand then finish your shift.");
         outroTextHandler.AddTextLineToDialog("And try not to do too much wrong otherwise \nMr. Willson will be very unhappy.");
@@ -154,61 +132,5 @@ public class DirectorLevel1 : MonoBehaviour
 
         }
     }
-
-    private void CheckForInputs()
-    {
-        if (_currentGameState == StateHandler.GameState.MainGame)
-        {
-            if (_firstTimeClipboardOpend)
-            {
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    _firstTimeClipboardOpend = false;
-                    SetTextForFirstClipboard();
-                }
-            }
-        }
-
-        if (_currentGameState == StateHandler.GameState.MainGame && !_firstTimeClipboardOpend)
-        {
-            if (_firstTimeClipboardClosed)
-            {
-                if (Input.GetKeyDown(KeyCode.S))
-                {
-                    Debug.Log("Phase3");
-                    _firstTimeClipboardClosed = false;
-                    SetTextForFirstClipboardClosed();
-                }
-            }
-
-        }
-
-        if (_currentGameState == StateHandler.GameState.MainGame && !_firstTimeClipboardClosed)
-        {
-            if (_firstTimeRotated)
-            {
-                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-                {
-                    _firstTimeRotated = false;
-                    SetTextForFirstRotation();
-                }
-
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

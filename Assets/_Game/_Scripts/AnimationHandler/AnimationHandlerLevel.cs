@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class AnimationHandlerLevel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] private GameObject _electricBoxLever;
+
+    Transform _electricBoxLeverTransform;
+
+    private void Start() {
+        _electricBoxLeverTransform = _electricBoxLever.GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Electricbox
+    public void PlayAnimationElectricBoxLeverUp()
     {
-        
+        _electricBoxLeverTransform.DOLocalMoveY(1.6f, 0.5f);
     }
+
+    public void PlayAnimationElectricBoxLeverDown()
+    {
+        _electricBoxLeverTransform.DOLocalMoveY(0.6f, 0.5f);
+    }
+
 }

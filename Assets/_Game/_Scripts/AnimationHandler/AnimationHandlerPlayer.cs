@@ -12,8 +12,6 @@ public class AnimationHandlerPlayer : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject clipboard;
 
-    ConverterHelper converterHelper;
-
     private Transform mainCameraTransform;
     private Transform clipboardTransform;
 
@@ -21,8 +19,6 @@ public class AnimationHandlerPlayer : MonoBehaviour
     {
         mainCameraTransform = mainCamera.GetComponent<Transform>();
         clipboardTransform = clipboard.GetComponent<Transform>();
-
-        converterHelper = FindObjectOfType<ConverterHelper>();
     }
 
 
