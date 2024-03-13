@@ -7,53 +7,29 @@ public class DirectorLevel2 : MonoBehaviour
     OutroTextHandler outroTextHandler;
     DialogHandler dialogHandler;
     OutroHandler outroHandler;
+    LightHandler lightHandler;
 
     private StateHandler.GameState _currentGameState;
 
+    [SerializeField] GameObject _objectToActivate1;
+    [SerializeField] GameObject _objectToActivate2;
+    [SerializeField] GameObject _objectToActivate3;
+    [SerializeField] GameObject _objectToDeactivate1;
+    [SerializeField] GameObject _objectToDeactivate2;
+    [SerializeField] GameObject _objectToDeactivate3;
+
+    private bool _isFirstTimeInspect = true;
+    private bool _isFirstTimeMainGame = true;
+    private bool _isNotSwapped = true;
 
     private void Awake()
     {
         outroTextHandler = FindObjectOfType<OutroTextHandler>();
         dialogHandler = FindObjectOfType<DialogHandler>();
         outroHandler = FindObjectOfType<OutroHandler>();
+        lightHandler = FindObjectOfType<LightHandler>();
 
         StateHandler.OnGameStateChanged += StateHandlerChanged;
-    }
-
-    private void StateHandlerChanged(StateHandler.GameState currentState)
-    {
-        _currentGameState = currentState;
-
-        switch (currentState)
-        {
-            case StateHandler.GameState.Inspect:
-
-    
-
-                    dialogHandler.AddTextLineToDialog("Well done.", DialogHandler.MaskGuyEmotion.happy);
-                    dialogHandler.AddTextLineToDialog("You can rotate objects in inspectmode \nby using your mousewheel.", DialogHandler.MaskGuyEmotion.happy);
-                    dialogHandler.AddTextLineToDialog("Leave the inspectmode by pressing \nright click again.", DialogHandler.MaskGuyEmotion.happy);
-                    dialogHandler.ShowDialog(true);
-                
-                break;
-
-            case StateHandler.GameState.MainGame:
-  
-                    dialogHandler.AddTextLineToDialog("Good.", DialogHandler.MaskGuyEmotion.happy);
-                    dialogHandler.AddTextLineToDialog("Now let's move on to the \ninventory.", DialogHandler.MaskGuyEmotion.happy);
-                    dialogHandler.AddTextLineToDialog("Press W to bring out your \nclipboard.", DialogHandler.MaskGuyEmotion.happy);
-
-
-
-                    dialogHandler.ShowDialog(true);
-                
-                break;
-
-            case StateHandler.GameState.Outro:
-                SetTextForOutro();
-                break;
-
-        }
     }
 
     private void Start()
@@ -62,74 +38,127 @@ public class DirectorLevel2 : MonoBehaviour
         SetTextForFirstDialog();
     }
 
+    private void StateHandlerChanged(StateHandler.GameState currentState)
+    {
+        _currentGameState = currentState;
+
+        switch (currentState)
+        {
+            case StateHandler.GameState.Tutorial:
+                StartCoroutine(TimerTillMainScene());
+                break;
+
+            case StateHandler.GameState.Inspect:
+                if (_isFirstTimeInspect)
+                {
+                    dialogHandler.AddTextLineToDialog("Hmmh fresh meat.", DialogHandler.MaskGuyEmotion.evil);
+                    dialogHandler.ShowDialog(true);
+
+                    _isFirstTimeInspect = false;
+                }
+                break;
+
+            case StateHandler.GameState.MainGame:
+                if (_isFirstTimeMainGame)
+                {
+                    StartCoroutine(StartLightsOutTimer());
+
+                    _isFirstTimeMainGame = false;
+                }
+                break;
+
+            case StateHandler.GameState.Outro:
+                SetTextForOutro();
+                break;
+        }
+    }
+
+
+
     private void SetTextForIntroScene()
     {
         outroTextHandler.AddTextLineToDialog("Welcome back fresh meat.");
         outroTextHandler.AddTextLineToDialog("You did well yesterday.");
-        outroTextHandler.AddTextLineToDialog("Your job is to do our inventory.");
-        outroTextHandler.AddTextLineToDialog("Make notes of our current stock \nand then finish your shift.");
-        outroTextHandler.AddTextLineToDialog("And try not to do too much wrong otherwise \nMr. Willson will be very unhappy.");
-        outroTextHandler.AddTextLineToDialog("And if Mr. Willson is unhappy, \nyou are going to be unhappy.");
-        outroTextHandler.AddTextLineToDialog("No worries. Im just joking...");
-        outroTextHandler.AddTextLineToDialog("Anyway.\nHave a great first shift!!!");
+        outroTextHandler.AddTextLineToDialog("I hope the second day is just as good.");
 
         outroTextHandler.SetMaskEmotionForOutro(OutroTextHandler.MaskGuyEmotionOutro.happy);
     }
 
     private void SetTextForFirstDialog()
     {
-        dialogHandler.AddTextLineToDialog("Welcome to our storage room.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.AddTextLineToDialog("You can interact with objects in the room \nby clicking the left mouse button.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.AddTextLineToDialog("Inspect objects by clicking the right mouse button.\nGive it a try.", DialogHandler.MaskGuyEmotion.happy);
+        dialogHandler.AddTextLineToDialog("Hey.", DialogHandler.MaskGuyEmotion.happy);
+        dialogHandler.AddTextLineToDialog("This time we also have meat on the list.", DialogHandler.MaskGuyEmotion.happy);
+        dialogHandler.AddTextLineToDialog("Have a nice shift.", DialogHandler.MaskGuyEmotion.happy);
     }
 
-    private void SetTextForFirstClipboard()
+    private void SetTextForFirstLightsOut()
     {
-        dialogHandler.AddTextLineToDialog("To successfully complete an inventory, \nyou must enter the number of items we are looking for.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.AddTextLineToDialog("Mr. Willson will only rate what is on the clipboard.", DialogHandler.MaskGuyEmotion.evil);
-        dialogHandler.AddTextLineToDialog("You can hide your clipboard \nby pressing S.", DialogHandler.MaskGuyEmotion.happy);
+        dialogHandler.AddTextLineToDialog("Looks like the lights have gone out.. .", DialogHandler.MaskGuyEmotion.surprise);
         dialogHandler.ShowDialog(true);
     }
 
-    private void SetTextForFirstClipboardClosed()
+    private IEnumerator StartLightsOutTimer()
     {
-        dialogHandler.AddTextLineToDialog("Good.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.AddTextLineToDialog("Now use A or D to look around.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.ShowDialog(true);
+        yield return new WaitForSeconds(12f);
+        StartCoroutine(lightHandler.StartLightFlickerLarge());
+        yield return new WaitForSeconds(2f);
+        SetTextForFirstLightsOut();
     }
 
-    private void SetTextForFirstRotation()
+    private IEnumerator TimerTillMainScene()
     {
-        dialogHandler.AddTextLineToDialog("That's all you need to know.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.AddTextLineToDialog("When you are finished, \nyou can end your shift by clicking on the door.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.AddTextLineToDialog("Thats it. \nGood luck with your first shift.", DialogHandler.MaskGuyEmotion.happy);
-        dialogHandler.ShowDialog(true);
+        yield return new WaitForSeconds(3f);
+        StateHandler.Instance.UpdateGameState(StateHandler.GameState.MainGame);
     }
 
+    public void SwapItems()
+    {
+        if (_isNotSwapped)
+        {
+            _objectToActivate1.SetActive(true);
+            _objectToActivate2.SetActive(true);
+            _objectToActivate3.SetActive(true);
+            _objectToDeactivate1.SetActive(false);
+            _objectToDeactivate2.SetActive(false);
+            _objectToDeactivate3.SetActive(false);
 
+            _isNotSwapped = false;
+        }
+        else        
+        {
+            _objectToActivate1.SetActive(false);
+            _objectToActivate2.SetActive(false);
+            _objectToActivate3.SetActive(false);
+            _objectToDeactivate1.SetActive(true);
+            _objectToDeactivate2.SetActive(true);
+            _objectToDeactivate3.SetActive(true);
+
+            _isNotSwapped = true;
+        }
+    }
+
+    //TODO
     private void SetTextForOutro()
     {
         if (outroHandler.CurrentEndResult == OutroHandler.EndResult.perfect)
         {
-            outroTextHandler.AddTextLineToDialog("Perfect job fresh meat.");
-            outroTextHandler.AddTextLineToDialog("Mr. Willson is very pleased.");
-            outroTextHandler.AddTextLineToDialog("Now get some rest. We'll see you again tomorrow.");
+            outroTextHandler.AddTextLineToDialog("Again. A perfect job.");
+            outroTextHandler.AddTextLineToDialog("You did really well.");
+            outroTextHandler.AddTextLineToDialog("Maybe just a little too well.");
         }
 
         else if (outroHandler.CurrentEndResult == OutroHandler.EndResult.good)
         {
-            outroTextHandler.AddTextLineToDialog("Hello fresh meat. You did well.");
-            outroTextHandler.AddTextLineToDialog("Almost everything was correct.");
-            outroTextHandler.AddTextLineToDialog("Now get some rest. We'll see you again tomorrow.");
+            outroTextHandler.AddTextLineToDialog("Great job again.");
+            outroTextHandler.AddTextLineToDialog("You got most things right.");
+            outroTextHandler.AddTextLineToDialog("Don't overwork yourself. We'll continue tomorrow.");
         }
 
         else if (outroHandler.CurrentEndResult == OutroHandler.EndResult.bad)
         {
-            outroTextHandler.AddTextLineToDialog("Oh fresh meat....");
-            outroTextHandler.AddTextLineToDialog("Too bad but it seems that \nyou are not the right one for this job.");
-            outroTextHandler.AddTextLineToDialog("Looks like we need to \nfind someone new.");
+            outroTextHandler.AddTextLineToDialog("Unfortunately, \nI have to say that...");
+            outroTextHandler.AddTextLineToDialog("...the M.I.M. Cooperation no longer \nany use for you.");
             outroTextHandler.AddTextLineToDialog("Good night.");
-
         }
     }
 

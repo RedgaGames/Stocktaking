@@ -1872,6 +1872,21 @@ PrefabInstance:
       propertyPath: _inspectObject
       value: 
       objectReference: {fileID: 3878393385660414131}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.r
+      value: 0.6176717
+      objectReference: {fileID: 0}
     - target: {fileID: 7219129545930245145, guid: 724d6015d56d1f041a75ab78bb24e05e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4024,6 +4039,21 @@ PrefabInstance:
       propertyPath: _inspectObject
       value: 
       objectReference: {fileID: 3878393385660414131}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.r
+      value: 0.6176717
+      objectReference: {fileID: 0}
     - target: {fileID: 7219129545930245145, guid: 724d6015d56d1f041a75ab78bb24e05e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8300,6 +8330,21 @@ PrefabInstance:
       propertyPath: _inspectObject
       value: 
       objectReference: {fileID: 3878393385660414131}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.r
+      value: 0.6176717
+      objectReference: {fileID: 0}
     - target: {fileID: 7219129545930245145, guid: 724d6015d56d1f041a75ab78bb24e05e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10738,6 +10783,21 @@ PrefabInstance:
       propertyPath: _inspectObject
       value: 
       objectReference: {fileID: 3878393385660414131}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.r
+      value: 0.6176717
+      objectReference: {fileID: 0}
     - target: {fileID: 7219129545930245145, guid: 724d6015d56d1f041a75ab78bb24e05e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -13862,6 +13922,21 @@ PrefabInstance:
       propertyPath: _inspectObject
       value: 
       objectReference: {fileID: 3878393385660414131}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219129545930245143, guid: 724d6015d56d1f041a75ab78bb24e05e,
+        type: 3}
+      propertyPath: _OutlineColor.r
+      value: 0.6176717
+      objectReference: {fileID: 0}
     - target: {fileID: 7219129545930245145, guid: 724d6015d56d1f041a75ab78bb24e05e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -78,15 +78,17 @@ public class LightHandler : MonoBehaviour
         }
     }
 
-    private IEnumerator StartLightFlickerLarge()
+    public IEnumerator StartLightFlickerLarge()
     {
         _mainLight.SetActive(false);
         yield return new WaitForSeconds(0.1f);
         _mainLight.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         _mainLight.SetActive(false);
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.1f);
         _mainLight.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        ActivateLight();
     }
 
 

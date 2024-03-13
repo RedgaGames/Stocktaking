@@ -84,12 +84,10 @@ public class OutroTextHandler : MonoBehaviour
             {
                 if (IsLevelPassed)
                 {
-                    Debug.Log("Level passed");
                     screenHandler.FinishLevelTransitionGood();
                 }
                 else
                 {
-                    Debug.Log("Level failed");
                     screenHandler.FinishLevelTransitionBad();
                 }
             }
