@@ -14,17 +14,19 @@ public class LightHandler : MonoBehaviour
 
     AnimationHandlerLevel animationHandlerLevel;
 
-    private bool _isLightOn = true;
+    public bool IsLightOn {get; private set;}
 
     private void Start() {
         animationHandlerLevel = FindObjectOfType<AnimationHandlerLevel>();
 
         LightFlickering(45f);
+
+        IsLightOn = true;
     }
   
     public void ActivateLight()
     {
-        if (_isLightOn)
+        if (IsLightOn)
         {
             _electricBoxGreenLight.SetActive(false);
             _electricBoxRedLight.SetActive(true);
@@ -33,7 +35,7 @@ public class LightHandler : MonoBehaviour
 
             animationHandlerLevel.PlayAnimationElectricBoxLeverDown();
 
-            _isLightOn = false;
+            IsLightOn = false;
         }
         else
         {
@@ -44,7 +46,7 @@ public class LightHandler : MonoBehaviour
 
             animationHandlerLevel.PlayAnimationElectricBoxLeverUp();
 
-            _isLightOn = true;
+            IsLightOn = true;
         }
     }
 
@@ -66,7 +68,7 @@ public class LightHandler : MonoBehaviour
 
     private IEnumerator StartLightFlickerSmall()
     {
-        if (_isLightOn)
+        if (IsLightOn)
         {
             _mainLight.SetActive(false);
             yield return new WaitForSeconds(0.1f);

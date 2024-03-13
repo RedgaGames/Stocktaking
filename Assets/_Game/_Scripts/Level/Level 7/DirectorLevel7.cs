@@ -10,6 +10,8 @@ public class DirectorLevel7 : MonoBehaviour
     LightHandler lightHandler;
     ScreenHandler screenHandler;
 
+    private bool _endLevelActivated = false;
+
     private StateHandler.GameState _currentGameState;
 
     private void Awake()
@@ -64,7 +66,11 @@ public class DirectorLevel7 : MonoBehaviour
 
     public void EndGame()
     {
-        StartCoroutine(EndGameRoutine());
+        if (!_endLevelActivated)
+        {
+            StartCoroutine(EndGameRoutine());
+            _endLevelActivated = true;
+        }
     }
 
     private IEnumerator EndGameRoutine()
