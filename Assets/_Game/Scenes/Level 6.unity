@@ -629,11 +629,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0e5edb6bccf05984dad128fb1a9fc914, type: 3}
   - {fileID: 8300000, guid: 5072a94fa6887024985a35d9cf66c949, type: 3}
   - {fileID: 8300000, guid: 3516c279da18eaa40b97de96d4d0356d, type: 3}
-  destroySpindFx:
-  - {fileID: 8300000, guid: e29300b7ba849b448a1762055516aa7a, type: 3}
-  - {fileID: 8300000, guid: 0b631872a5e91674c92bd72dd06d5fab, type: 3}
-  - {fileID: 8300000, guid: fd1d4f3db3617404e98c3c01fb7b15c0, type: 3}
-  - {fileID: 8300000, guid: 84400432cb864f249b2e7a9b1a7f75df, type: 3}
 --- !u!1 &73521006
 GameObject:
   m_ObjectHideFlags: 0
@@ -15019,7 +15014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Day 6
+  m_text: Day 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d683f2ab024ec0145814c84cd0f2ec94, type: 2}
   m_sharedMaterial: {fileID: -403277894513911722, guid: d683f2ab024ec0145814c84cd0f2ec94,

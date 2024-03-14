@@ -43,7 +43,6 @@ public class AudioHandler : MonoBehaviour
 
     public List<AudioClip> interactFx = new List<AudioClip>();
     public List<AudioClip> ratKillFx = new List<AudioClip>();
-    public List<AudioClip> destroySpindFx = new List<AudioClip>();
 
     private List<AudioSource> fxAudioSources = new List<AudioSource>();
     private List<AudioSource> bgmAudioSources = new List<AudioSource>();
@@ -173,7 +172,6 @@ public class AudioHandler : MonoBehaviour
     public void PlaySound_FX_Ob_ElectricBox_Off() { PlaySound(FX_Ob_ElectricBox_Off, AudioSourceType.Fx); }
     public void PlaySound_FX_Ob_Interact(){int randomIndex = Random.Range(0, interactFx.Count); PlaySound(interactFx[randomIndex], AudioSourceType.Fx);}
     public void PlaySound_FX_Ob_RatKill(){int randomIndex = Random.Range(0, ratKillFx.Count); PlaySound(ratKillFx[randomIndex], AudioSourceType.Fx);}
-    public void PlaySound_FX_Ob_DestroySpind(){int randomIndex = Random.Range(0, destroySpindFx.Count); PlaySound(destroySpindFx[randomIndex], AudioSourceType.Fx);}
     
     public void PlaySound_FX_Clipboard_Open(){ PlaySound(FX_Clipboard_Open, AudioSourceType.Fx); }
     public void PlaySound_FX_Clipboard_Close(){ PlaySound(FX_Clipboard_Close, AudioSourceType.Fx); }

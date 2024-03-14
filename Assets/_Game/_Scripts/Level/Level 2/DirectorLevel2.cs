@@ -160,7 +160,6 @@ public class DirectorLevel2 : MonoBehaviour
         {
             outroTextHandler.AddTextLineToDialog("Unfortunately, \nI have to say that...");
             outroTextHandler.AddTextLineToDialog("...the M.I.M. Cooperation no longer \nany use for you.");
-            outroTextHandler.AddTextLineToDialog("Good night.");
         }
     }
 

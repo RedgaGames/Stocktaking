@@ -157,8 +157,6 @@ public class DirectorLevel1 : MonoBehaviour
             outroTextHandler.AddTextLineToDialog("Oh fresh meat....");
             outroTextHandler.AddTextLineToDialog("Too bad but it seems that \nyou are not the right one for this job.");
             outroTextHandler.AddTextLineToDialog("Looks like we need to \nfind someone new.");
-            outroTextHandler.AddTextLineToDialog("Good night.");
-
         }
     }
 

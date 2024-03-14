@@ -15,6 +15,7 @@ public class DirectorLevel6 : MonoBehaviour
 
     private StateHandler.GameState _currentGameState;
     private bool _isLevelEnded = false;
+    private bool _isFirstTimeMainGame = true;
 
 
 
@@ -52,8 +53,12 @@ public class DirectorLevel6 : MonoBehaviour
                 break;
 
             case StateHandler.GameState.MainGame:
-                StartCoroutine(StartLightsOutTimer());
-                StartCoroutine(SetDialogForPlayer());
+                if (_isFirstTimeMainGame)
+                {
+                    StartCoroutine(StartLightsOutTimer());
+                    StartCoroutine(SetDialogForPlayer());
+                    _isFirstTimeMainGame = false;
+                }
                 break;
 
             case StateHandler.GameState.Outro:
@@ -86,6 +91,14 @@ public class DirectorLevel6 : MonoBehaviour
         {
             dialogHandler.AddTextLineToDialog("I never liked you anyway.", DialogHandler.MaskGuyEmotion.evil);
             dialogHandler.AddTextLineToDialog("Fresh meat...", DialogHandler.MaskGuyEmotion.evil);
+            dialogHandler.ShowDialog(true);
+        }
+        yield return new WaitForSeconds(25f);
+        if(!_isLevelEnded)
+        {
+            dialogHandler.AddTextLineToDialog("Got stuck?", DialogHandler.MaskGuyEmotion.evil);
+            dialogHandler.AddTextLineToDialog("You can't get out of here.", DialogHandler.MaskGuyEmotion.evil);
+            dialogHandler.AddTextLineToDialog("You might as well just stare at the wall..", DialogHandler.MaskGuyEmotion.evil);
             dialogHandler.ShowDialog(true);
         }
     }
@@ -146,7 +159,7 @@ public class DirectorLevel6 : MonoBehaviour
             outroTextHandler.AddTextLineToDialog("Listen.");
             outroTextHandler.AddTextLineToDialog("You don't know what a job means here.");
             outroTextHandler.AddTextLineToDialog("We are in the same boat. \nWe can help each other.");
-            outroTextHandler.AddTextLineToDialog("Please don't tell Mr. Willsion.");
+            outroTextHandler.AddTextLineToDialog("Please don't tell Mr. Willson.");
             outroTextHandler.AddTextLineToDialog("...");
         }
 
@@ -156,7 +169,7 @@ public class DirectorLevel6 : MonoBehaviour
             outroTextHandler.AddTextLineToDialog("Listen.");
             outroTextHandler.AddTextLineToDialog("You don't know what a job means here.");
             outroTextHandler.AddTextLineToDialog("We are in the same boat. \nWe can help each other.");
-            outroTextHandler.AddTextLineToDialog("Please don't tell Mr. Willsion.");
+            outroTextHandler.AddTextLineToDialog("Please don't tell Mr. Willson.");
             outroTextHandler.AddTextLineToDialog("...");
         }
 
