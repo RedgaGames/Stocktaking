@@ -9537,10 +9537,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -24967,11 +24967,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0e5edb6bccf05984dad128fb1a9fc914, type: 3}
   - {fileID: 8300000, guid: 5072a94fa6887024985a35d9cf66c949, type: 3}
   - {fileID: 8300000, guid: 3516c279da18eaa40b97de96d4d0356d, type: 3}
-  destroySpindFx:
-  - {fileID: 8300000, guid: e29300b7ba849b448a1762055516aa7a, type: 3}
-  - {fileID: 8300000, guid: 0b631872a5e91674c92bd72dd06d5fab, type: 3}
-  - {fileID: 8300000, guid: fd1d4f3db3617404e98c3c01fb7b15c0, type: 3}
-  - {fileID: 8300000, guid: 84400432cb864f249b2e7a9b1a7f75df, type: 3}
 --- !u!1 &2052389889
 GameObject:
   m_ObjectHideFlags: 0
