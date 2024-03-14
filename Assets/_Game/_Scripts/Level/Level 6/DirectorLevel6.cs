@@ -44,6 +44,7 @@ public class DirectorLevel6 : MonoBehaviour
         switch (currentState)
         {
             case StateHandler.GameState.Tutorial:
+                AudioHandler.instance.PlaySound_Music_BGM2();
                StartCoroutine(TimerTillMainScene());
                 break;
 
@@ -52,12 +53,40 @@ public class DirectorLevel6 : MonoBehaviour
 
             case StateHandler.GameState.MainGame:
                 StartCoroutine(StartLightsOutTimer());
+                StartCoroutine(SetDialogForPlayer());
                 break;
 
             case StateHandler.GameState.Outro:
             SetTextForOutro();
             _isLevelEnded = true;
+            StateHandler.OnGameStateChanged -= StateHandlerChanged;
                 break;
+        }
+    }
+
+    private IEnumerator SetDialogForPlayer()
+    {
+
+        yield return new WaitForSeconds(25f);
+        if(!_isLevelEnded)
+        {
+            dialogHandler.AddTextLineToDialog("You fool.", DialogHandler.MaskGuyEmotion.angryLow);
+            dialogHandler.AddTextLineToDialog("You will never get out!", DialogHandler.MaskGuyEmotion.angryHigh);
+            dialogHandler.ShowDialog(true);
+        }
+        yield return new WaitForSeconds(25f);
+        if(!_isLevelEnded)
+        {
+            dialogHandler.AddTextLineToDialog("I will not be replaced!", DialogHandler.MaskGuyEmotion.evil);
+            dialogHandler.AddTextLineToDialog("Especially from someone like you!", DialogHandler.MaskGuyEmotion.angryHigh);
+            dialogHandler.ShowDialog(true);
+        }
+        yield return new WaitForSeconds(25f);
+        if(!_isLevelEnded)
+        {
+            dialogHandler.AddTextLineToDialog("I never liked you anyway.", DialogHandler.MaskGuyEmotion.evil);
+            dialogHandler.AddTextLineToDialog("Fresh meat...", DialogHandler.MaskGuyEmotion.evil);
+            dialogHandler.ShowDialog(true);
         }
     }
 
@@ -98,7 +127,8 @@ public class DirectorLevel6 : MonoBehaviour
 
     private void SetTextForIntroScene()
     {
-        outroTextHandler.AddTextLineToDialog("MEAT IS MEAT!");
+        outroTextHandler.AddTextLineToDialog("I gave you a chance...");
+        outroTextHandler.AddTextLineToDialog("...now you'll end up \nlike everyone else.");
         outroTextHandler.AddTextLineToDialog("MEAT IS MEAT!");
         outroTextHandler.AddTextLineToDialog("MEAT IS MEAT!");
         outroTextHandler.AddTextLineToDialog("MEAT IS MEAT!");

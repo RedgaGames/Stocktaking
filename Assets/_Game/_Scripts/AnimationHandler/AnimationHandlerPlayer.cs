@@ -32,11 +32,13 @@ public class AnimationHandlerPlayer : MonoBehaviour
     // TODO: Noone likes magic numbers. But here there are - Enjoy!
     public void PlayAnimationShowClipboard()
     {  
+        AudioHandler.instance.PlaySound_FX_Clipboard_Open();
         clipboardTransform.DOLocalMoveY(-1.3f, 0.8f);
     }
 
     public void PlayAnimationHideClipboard()
     {
+        AudioHandler.instance.PlaySound_FX_Clipboard_Close();
         clipboardTransform.DOLocalMoveY(-3.3f, 0.8f);
     }
 }

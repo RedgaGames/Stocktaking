@@ -54,7 +54,7 @@ public class MeatController : MonoBehaviour
 
         Vector3 screenPoint = Camera.main.WorldToViewportPoint(obj.transform.position);
 
-        float buffer = 0.05f; // Hier kannst du den Bereich anpassen
+        float buffer = 0f; // Hier kannst du den Bereich anpassen
     
         bool isVisible = screenPoint.z > 0 &&
                      screenPoint.x > -buffer && screenPoint.x < 1 + buffer &&

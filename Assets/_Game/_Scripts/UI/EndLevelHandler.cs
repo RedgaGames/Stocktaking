@@ -19,6 +19,7 @@ public class EndLevelHandler : MonoBehaviour
 
     public void OpenEndLevelScreen()
     {
+        AudioHandler.instance.PlaySound_FX_UI_Click2();
         StateHandler.Instance.UpdateGameState(StateHandler.GameState.EndGame);
         screenHandler.ShowEndLevelScreen();
         dialogHandler.ClearAndHideDialogScreen();
@@ -28,12 +29,15 @@ public class EndLevelHandler : MonoBehaviour
 
     public void ReturnToGame()
     {
+        AudioHandler.instance.PlaySound_FX_UI_Click3();
         StateHandler.Instance.UpdateGameState(StateHandler.GameState.MainGame);
         screenHandler.HideEndLevelScreen();
     }
 
     public void EndLevel()
-    {
+    {   
+        AudioHandler.instance.PlaySound_FX_UI_Click4();
+        AudioHandler.instance.StopSoundsBGM();
         endResultHandler.CalculateEndScore();
         StateHandler.Instance.UpdateGameState(StateHandler.GameState.Outro);
     }

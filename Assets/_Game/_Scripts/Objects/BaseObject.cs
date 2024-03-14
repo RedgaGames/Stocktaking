@@ -38,6 +38,7 @@ public class BaseObject : MonoBehaviour
     {
         if (mouseClickDetector.LastMouseButtonClicked == MouseButtonType.leftButton)
         {
+            AudioHandler.instance.PlaySound_FX_Ob_Interact();
             if (canGetPushed)
             {
                 ApplyForce();
@@ -85,6 +86,7 @@ public class BaseObject : MonoBehaviour
     protected void InspectItem()
     {
         if (!_inspectObject){ Debug.Log("Kein Item zum Inspecten hinterlegt"); return; }
+        AudioHandler.instance.PlaySound_FX_InspectMode_Open();
         _inspectObject.SetActive(true);
 
         StateHandler.Instance.UpdateGameState(StateHandler.GameState.Inspect);

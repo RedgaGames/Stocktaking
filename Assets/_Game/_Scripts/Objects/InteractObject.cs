@@ -63,6 +63,7 @@ public class InteractObject : MonoBehaviour
     private void EndInspection()
     {
         gameObject.SetActive(false);
+        AudioHandler.instance.PlaySound_FX_InspectMode_Close();
 
         StateHandler.Instance.UpdateGameState(StateHandler.GameState.MainGame);
     }

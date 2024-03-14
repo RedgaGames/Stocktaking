@@ -84,6 +84,7 @@ public class StateHandler : MonoBehaviour
     private IEnumerator ShowTutroialRoutine()
     {
         screenHandler.HideOutroScreenAsIntro();
+        AudioHandler.instance.PlaySound_FX_Intro_Tutorial();
         yield return new WaitForSeconds(1.5f);
         dialogHandler.ShowDialog(true);
     }
@@ -112,6 +113,7 @@ public class StateHandler : MonoBehaviour
 
     private IEnumerator ShowOutroRoutine()
     {
+        
         inputHandler.IsMainControllsActivated = false;
         screenHandler.ShowOutroScreen();
         yield return new WaitForSeconds(1f);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class holds every basic level configs and collects data.
@@ -12,6 +13,8 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private string _itemOnChecklistSlot1, _itemOnChecklistSlot2, _itemOnChecklistSlot3, _itemOnChecklistSlot4, _itemOnChecklistSlot5;
 
     private ItemType itemType1, itemType2, itemType3, itemType4, itemType5; 
+
+    public int CurrentLevel { get; private set; }
 
     public int ItemQuantityTomato { get; private set; }
     public int ItemQuantityMilk { get; private set; }
@@ -35,6 +38,9 @@ public class LevelHandler : MonoBehaviour
         if (_itemOnChecklistSlot3 != null) { itemType3 = GetEnum(_itemOnChecklistSlot3); }
         if (_itemOnChecklistSlot4 != null) { itemType4 = GetEnum(_itemOnChecklistSlot4); }
         if (_itemOnChecklistSlot5 != null) { itemType5 = GetEnum(_itemOnChecklistSlot5); }
+
+        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("CurrentLevel = " + CurrentLevel);
     }
 
     public void ChangeQuantityOfItemInSlot(int orderOnChecklist, int newValue)
@@ -55,6 +61,12 @@ public class LevelHandler : MonoBehaviour
                 break;
             case ItemType.milk:
                 ItemQuantityMilk = newValue;
+                break;
+            case ItemType.meat:
+                ItemQuantityMeat = newValue;
+                break;
+            case ItemType.cheese:
+                ItemQuantityCheese = newValue;
                 break;
         }
     }
@@ -97,6 +109,8 @@ public class LevelHandler : MonoBehaviour
         
         Debug.Log("Tomatos on Scene: " + ItemCountOnSceneTomato);
         Debug.Log("Milk on Scene: " + ItemCountOnSceneMilk);
+        Debug.Log("Meat on Scene: " + ItemCountOnSceneMeat);
+        Debug.Log("Cheese on Scene: " + ItemCountOnSceneCheese);
     }
 
     private void CountAllItemsOnChecklist()
@@ -108,9 +122,6 @@ public class LevelHandler : MonoBehaviour
             ItemQuantityCheese;
     }
 
-
-
-
     // Unity doenst support enums in the hierachy??!
     private ItemType GetEnum(string itemName)
     {
@@ -118,7 +129,7 @@ public class LevelHandler : MonoBehaviour
         if (itemName == "Tomato") { itemType = ItemType.tomato; isTomatoOnScene = true; }
         else if (itemName == "Milk") { itemType = ItemType.milk; isMilkOnScene = true; }
         else if (itemName == "Meat") { itemType = ItemType.meat; isMeatOnScene = true; }
-        else if (itemName == "Cheese") { itemType = ItemType.cheese; }
+        else if (itemName == "Cheese") { itemType = ItemType.cheese; isCheeseOnScene = true; }
         else { itemType = ItemType.empty; }
 
         return itemType;

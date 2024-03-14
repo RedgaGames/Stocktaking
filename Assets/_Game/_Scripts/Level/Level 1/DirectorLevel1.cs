@@ -44,9 +44,14 @@ public class DirectorLevel1 : MonoBehaviour
 
         switch (currentState)
         {
+            case StateHandler.GameState.Tutorial:
+                break;
+
             case StateHandler.GameState.Inspect:
                 if (_firstTimeInspect)
                 {
+                    AudioHandler.instance.PlaySound_Music_Level1();
+                    
                     _firstTimeInspect = false;
 
                     dialogHandler.AddTextLineToDialog("Well done.", DialogHandler.MaskGuyEmotion.happy);
@@ -60,6 +65,7 @@ public class DirectorLevel1 : MonoBehaviour
                 if (_firstTimeMainGame)
                 {
                     _firstTimeMainGame = false;
+                    
 
                     dialogHandler.AddTextLineToDialog("Good.", DialogHandler.MaskGuyEmotion.happy);
                     dialogHandler.AddTextLineToDialog("Now let's move on to the \ninventory.", DialogHandler.MaskGuyEmotion.happy);
@@ -73,6 +79,7 @@ public class DirectorLevel1 : MonoBehaviour
 
             case StateHandler.GameState.Outro:
                 SetTextForOutro();
+                StateHandler.OnGameStateChanged -= StateHandlerChanged;
                 break;
 
         }
@@ -93,7 +100,7 @@ public class DirectorLevel1 : MonoBehaviour
         outroTextHandler.AddTextLineToDialog("And try not to do too much wrong otherwise \nMr. Willson will be very unhappy.");
         outroTextHandler.AddTextLineToDialog("And if Mr. Willson is unhappy, \nyou are going to be unhappy.");
         outroTextHandler.AddTextLineToDialog("No worries. Im just joking...");
-        outroTextHandler.AddTextLineToDialog("Anyway.\nHave a great first shift!!!");
+        outroTextHandler.AddTextLineToDialog("Anyway.\nHave a great first shift.");
 
         outroTextHandler.SetMaskEmotionForOutro(OutroTextHandler.MaskGuyEmotionOutro.happy);
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DirectorLevel7 : MonoBehaviour
 {
@@ -38,7 +39,8 @@ public class DirectorLevel7 : MonoBehaviour
         switch (currentState)
         {
             case StateHandler.GameState.Tutorial:
-               StartCoroutine(TimerTillMainScene());
+                AudioHandler.instance.PlaySound_Music_BGM3();
+                StartCoroutine(TimerTillMainScene());
                 break;
 
             case StateHandler.GameState.Inspect:
@@ -77,6 +79,8 @@ public class DirectorLevel7 : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         screenHandler.FinishLevelTransitionGood();
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(0);
     }   
 
 }

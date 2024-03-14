@@ -61,6 +61,7 @@ public class DirectorLevel2 : MonoBehaviour
             case StateHandler.GameState.MainGame:
                 if (_isFirstTimeMainGame)
                 {
+                    AudioHandler.instance.PlaySound_Music_Level2();
                     StartCoroutine(StartLightsOutTimer());
 
                     _isFirstTimeMainGame = false;
@@ -69,6 +70,7 @@ public class DirectorLevel2 : MonoBehaviour
 
             case StateHandler.GameState.Outro:
                 SetTextForOutro();
+                StateHandler.OnGameStateChanged -= StateHandlerChanged;
                 break;
         }
     }

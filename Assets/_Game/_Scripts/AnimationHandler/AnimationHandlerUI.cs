@@ -60,8 +60,9 @@ public class AnimationHandlerUI : MonoBehaviour
     private IEnumerator PlayAnimation_IntroText_Routine()
     {
         PlayAnimation_BlackBackground_FadeOut(3f);
-         _introTextScreen.SetActive(true);
-        yield return new  WaitForSeconds(3f);
+        _introTextScreen.SetActive(true);
+        AudioHandler.instance.PlaySound_FX_Intro_Day();
+        yield return new  WaitForSeconds(2f);
         PlayAnimation_BlackBackground_FadeIn(1.5f);
         yield return new  WaitForSeconds(1.5f);
         _introTextScreen.SetActive(false);

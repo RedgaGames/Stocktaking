@@ -26,11 +26,13 @@ public class InputHandler : MonoBehaviour
         //Rotate Left
         if (Input.GetKeyDown(KeyCode.A))
         {
+            AudioHandler.instance.PlaySound_FX_UI_Click6();
             cameraController.RotateCamera(-90f);
         }
         //Rotate Right
         if (Input.GetKeyDown(KeyCode.D))
         {
+            AudioHandler.instance.PlaySound_FX_UI_Click7();
             cameraController.RotateCamera(90f);
         }
 

@@ -4,10 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class OutroTextHandler : MonoBehaviour
 {
     ScreenHandler screenHandler;
+    LevelHandler levelHandler;
 
     [Header("Steuerelemente")]
     [SerializeField] private TextMeshProUGUI _dialogText;
@@ -24,6 +26,7 @@ public class OutroTextHandler : MonoBehaviour
     private void Awake()
     {
         screenHandler = FindObjectOfType<ScreenHandler>();
+        levelHandler = FindObjectOfType<LevelHandler>();
         dialogLines = new List<string>();
     }
 
@@ -45,6 +48,11 @@ public class OutroTextHandler : MonoBehaviour
     {
         if (dialogLines.Count == 0) { Debug.Log("Keine Dialoge zum zeigen"); return;}
 
+        if (_isIntro)
+        {
+            AudioHandler.instance.PlaySound_Music_Intro();
+        }
+
         _index = 0;
         _dialogText.text = string.Empty;
 
@@ -53,6 +61,7 @@ public class OutroTextHandler : MonoBehaviour
 
     private IEnumerator TypeOutroText()
     {
+        AudioHandler.instance.PlaySound_FX_Monolog_Next();
         foreach (char c in dialogLines[_index].ToCharArray())
         {
             _dialogText.text += c;
@@ -75,6 +84,7 @@ public class OutroTextHandler : MonoBehaviour
             if (_isIntro)
             {
                 StateHandler.Instance.UpdateGameState(StateHandler.GameState.Tutorial);
+                AudioHandler.instance.StopSoundsBGM();
                 _isIntro = false;
 
                 dialogLines.Clear();
@@ -89,8 +99,24 @@ public class OutroTextHandler : MonoBehaviour
                 else
                 {
                     screenHandler.FinishLevelTransitionBad();
+
                 }
+                StartCoroutine(ChangeLevel());
             }
+        }
+    }
+
+    private IEnumerator ChangeLevel()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (IsLevelPassed)
+        {
+            SceneManager.LoadScene(levelHandler.CurrentLevel + 1);
+        }
+        else 
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
         }
     }
 

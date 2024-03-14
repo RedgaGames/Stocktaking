@@ -54,6 +54,7 @@ public class CheckListHandler : MonoBehaviour
             case 1:
                 if (itemQuantity1 == 9) { return; }
                 itemQuantity1++;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Add();
 
                 itemAdd1.material = ChangeTransparency(itemQuantity1, itemAdd1);
                 if (itemQuantity1 != 9) { itemRed1.material = ChangeTransparency(itemQuantity1, itemRed1); }
@@ -67,6 +68,7 @@ public class CheckListHandler : MonoBehaviour
             case 2:
                 if (itemQuantity2 == 9) { return; }
                 itemQuantity2++;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Add();
 
                 itemAdd2.material = ChangeTransparency(itemQuantity2, itemAdd2);
                 if (itemQuantity2 != 9) { itemRed2.material = ChangeTransparency(itemQuantity2, itemRed2); }
@@ -81,6 +83,7 @@ public class CheckListHandler : MonoBehaviour
             case 3:
                 if (itemQuantity3 == 9) { return; }
                 itemQuantity3++;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Add();
 
                 itemAdd3.material = ChangeTransparency(itemQuantity3, itemAdd3);
                 if (itemQuantity3 != 9) { itemRed3.material = ChangeTransparency(itemQuantity3, itemRed3); }
@@ -95,6 +98,7 @@ public class CheckListHandler : MonoBehaviour
             case 4:
                 if (itemQuantity4 == 9) { return; }
                 itemQuantity4++;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Add();
 
                 itemAdd4.material = ChangeTransparency(itemQuantity4, itemAdd4);
                 if (itemQuantity4 != 9) { itemRed4.material = ChangeTransparency(itemQuantity4, itemRed4); }
@@ -115,6 +119,7 @@ public class CheckListHandler : MonoBehaviour
             case 1:
                 if (itemQuantity1 == 0) { return; }
                 itemQuantity1--;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Close();
 
                 itemRed1.material = ChangeTransparency(itemQuantity1, itemRed1);
                 if (itemQuantity1 != 0) { itemAdd1.material = ChangeTransparency(itemQuantity1, itemAdd1); }
@@ -128,6 +133,7 @@ public class CheckListHandler : MonoBehaviour
             case 2:
                 if (itemQuantity2 == 0) { return; }
                 itemQuantity2--;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Close();
 
                 itemRed2.material = ChangeTransparency(itemQuantity2, itemRed2);
                 if (itemQuantity2 != 0) { itemAdd2.material = ChangeTransparency(itemQuantity2, itemAdd2); }
@@ -142,6 +148,7 @@ public class CheckListHandler : MonoBehaviour
             case 3:
                 if (itemQuantity3 == 0) { return; }
                 itemQuantity3--;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Close();
 
                 itemRed3.material = ChangeTransparency(itemQuantity3, itemRed3);
                 if (itemQuantity3 != 0) { itemAdd3.material = ChangeTransparency(itemQuantity3, itemAdd3); }
@@ -156,6 +163,7 @@ public class CheckListHandler : MonoBehaviour
             case 4:
                 if (itemQuantity4 == 0) { return; }
                 itemQuantity4--;
+                AudioHandler.instance.PlaySound_FX_Clipboard_Close();
 
                 itemRed4.material = ChangeTransparency(itemQuantity4, itemRed4);
                 if (itemQuantity4 != 0) { itemAdd4.material = ChangeTransparency(itemQuantity4, itemAdd4); }

@@ -36,6 +36,7 @@ public class LightHandler : MonoBehaviour
             animationHandlerLevel.PlayAnimationElectricBoxLeverDown();
 
             IsLightOn = false;
+            AudioHandler.instance.PlaySound_FX_Ob_ElectricBox_Off();
         }
         else
         {
@@ -47,6 +48,7 @@ public class LightHandler : MonoBehaviour
             animationHandlerLevel.PlayAnimationElectricBoxLeverUp();
 
             IsLightOn = true;
+            AudioHandler.instance.PlaySound_FX_UI_Click8();
         }
     }
 

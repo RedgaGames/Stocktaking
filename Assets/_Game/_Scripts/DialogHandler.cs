@@ -34,6 +34,7 @@ public class DialogHandler : MonoBehaviour
     private int _index;
     private bool canBeSkipped;
     private bool _isCurrentlyOpen = false;
+    private bool _isClosing = false;
 
     private void Awake() {
         screenHandler = FindObjectOfType<ScreenHandler>();
@@ -47,6 +48,8 @@ public class DialogHandler : MonoBehaviour
 
     public void ContinuePressed()
     {
+        if (_isClosing){return;}
+
         if (_dialogText.text == dialogLines[_index].text)
         {
             ShowNextLine();
@@ -69,10 +72,12 @@ public class DialogHandler : MonoBehaviour
 
     public void ShowDialog(bool newCanBeSkipped)
     {
+        _isClosing = false;
         if (dialogLines.Count == 0) { Debug.Log("Keine Dialoge zum zeigen"); }
         if (_isCurrentlyOpen){return;}
 
         screenHandler.ShowDialogScreen();
+        AudioHandler.instance.PlaySound_FX_Dialog_PopUp();
 
         canBeSkipped = newCanBeSkipped;
 
@@ -103,6 +108,7 @@ public class DialogHandler : MonoBehaviour
             dialogLines.Clear();
             screenHandler.HideDialogScreen();
             _isCurrentlyOpen = false;
+            _isClosing = true;
     }
 
     private IEnumerator TypeDialogText()
@@ -113,6 +119,8 @@ public class DialogHandler : MonoBehaviour
         _clickToContinue.SetActive(false);
 
         animationHandlerMaskedGuy.PlayAnimation_MaskedGuyDialog_NewLine();
+
+        AudioHandler.instance.PlaySound_FX_Dialog_Next();
 
         foreach (char c in dialogLines[_index].text.ToCharArray())
         {
